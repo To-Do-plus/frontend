@@ -15,7 +15,7 @@ class AddTDItem extends React.Component {
   handleChange = (e) => {
     const thingsWeWant = e.target.thingsWeWant;
     const formData = e.target.formData;
-    formData[field] = value;
+    // formData[field] = value;
     this.setState({ formData });
   }
 
