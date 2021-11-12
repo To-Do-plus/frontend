@@ -1,8 +1,11 @@
 import React from 'react';
-import Calendar from 'react-calendar';
+// import Calendar from 'react-calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
+import Main from './Components/Main'
+import AboutMe from './Components/AboutMe'
+
 
 import {
   BrowserRouter as Router,
@@ -52,18 +55,32 @@ class App extends React.Component {
     
     return (
       <>
+
         
          <Router>
            <Header resGoogle={this.resGoogle} />
            {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2>:<h2>Please Login</h2>}
+
+       
+        <Main />
+        <AboutMe />
+       
+
           <Switch>
             <Route exact path="/">
             <Calendar />
             </Route>
             <Route exact path="/">
             </Route>
+            <Route exact path="/aboutme">
+            <AboutMe />
+            </Route>
           </Switch>
         </Router>
+
+        
+
+
       </>
     )
   }
