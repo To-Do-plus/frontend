@@ -1,6 +1,7 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Main from './Components/Main'
 
 // import {
 //   BrowserRouter as Router,
@@ -31,6 +32,19 @@ class App extends React.Component {
             </Route>
           </Switch>
         </Router> */}
+
+        <Main />
+        {/* <Router>
+          <Switch>
+            <Route exact path="/">
+            <Main />
+            </Route>
+            <Route exact path="/">
+            </Route>
+          </Switch>
+        </Router> */}
+
+
       </>
     )
   }
