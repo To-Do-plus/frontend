@@ -1,10 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Navbar, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import AddTDItem from './AddTDItem';
 import TDItems from './TDItems';
-
-
 
 
 class Main extends React.Component {

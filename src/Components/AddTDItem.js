@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import DateTimePicker from 'react-datetimepicker-bootstrap';
 
 class AddTDItem extends React.Component {
 
@@ -32,8 +33,19 @@ class AddTDItem extends React.Component {
           <Card.Header>What's On Your List?</Card.Header>
           <Card.Body>
             <Form.Group>
+              <Form.Label>What do you need to do?</Form.Label>
+              <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
+              <Form.Label>Anything special to remember?</Form.Label>
+              <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
               <Form.Label>To Do Item</Form.Label>
               <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
+              <Form.Label>To Do Item</Form.Label>
+              <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
+              <Form.Label>To Do Item</Form.Label>
+              <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
+              <Form.Label>To Do Item</Form.Label>
+              <Form.Control type="text" placeholder="To Do Item" thingsWeWant="thingsWeWant" onChange={this.handleChange} />
+              <DateTimePicker id="datetimepicker" />
             </Form.Group>
             <Button variant="primary" type="submit">Add To The List!</Button>
           </Card.Body>

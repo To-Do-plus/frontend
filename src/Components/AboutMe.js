@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import { Navbar, Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Chris from './headshots/Chris.jfif';
 import Jae from './headshots/Jae.jpg';
 

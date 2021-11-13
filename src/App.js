@@ -27,8 +27,6 @@ class App extends React.Component {
     }
   }
 
-
-
   resGoogle = (res) => {
     console.log(res);
     this.setState({ accessToken: res.tokenObj.access_token });
@@ -36,6 +34,12 @@ class App extends React.Component {
     console.log(this.state.google);
     this.getEvents();
   }
+
+  // logout = () => {
+
+  //   this.setState({ accessToken: '' });
+  //   this.setState({ google: [] })
+  // }
 
   getEvents = async () => {
     let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -58,12 +62,12 @@ class App extends React.Component {
 
 
         <Router>
-          <Header resGoogle={this.resGoogle} />
+          <Header resGoogle={this.resGoogle} logout={this.logout} />
           {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
 
           <Switch>
             <Route exact path="/">
-              {this.state.google.name ? <Main />: ""}
+              {this.state.google.name ? <Main /> : ""}
               {this.state.google.name ? <Calendar /> : ""}
             </Route>
             <Route exact path="/aboutme">
