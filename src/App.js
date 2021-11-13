@@ -63,8 +63,8 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/">
-              <Main />
-              <Calendar />
+              {this.state.google.name ? <Main />: ""}
+              {this.state.google.name ? <Calendar /> : ""}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

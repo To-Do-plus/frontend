@@ -18,7 +18,6 @@ class LoginButton extends React.Component {
             cookiePolicy={'single_host_origin'}
 
             />
-            {/* <Button onClick={() => this.props.auth0.loginWithRedirect()}>Login</Button> */}
             </>
         )
     }
