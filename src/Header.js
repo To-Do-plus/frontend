@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './Header.css';
 import './LoginButton';
 import LoginButton from './LoginButton';
-// import LogoutButton from './LogoutButton';
+import LogoutButton from './LogoutButton';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class Header extends React.Component {
@@ -15,8 +15,7 @@ class Header extends React.Component {
                 <Navbar.Brand>Calendar Carousel</Navbar.Brand>
                 <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
                 <NavItem><Link to="/aboutme" className="nav-link">About Me</Link></NavItem>
-                <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>
-                {/* <NavItem> <LogoutButton>Logout</LogoutButton></NavItem> */}
+               {this.props.userName ? <NavItem> <LogoutButton onLogout={this.props.onLogout} /></NavItem>: <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>}
             </Navbar>
         )
 
