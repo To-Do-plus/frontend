@@ -24,6 +24,7 @@ class App extends React.Component {
       user: null,
       google: [],
       accessToken: '',
+      timeZone: '',
     }
   }
 
@@ -45,6 +46,8 @@ class App extends React.Component {
     try {
       let eventData = await axios.get(URL, config);
       console.log(eventData);
+      this.setState({timeZone: eventData.data.timeZone});
+      console.log(this.state.timeZone);
     }
     catch (err) {
       console.log('there was an error', err);
