@@ -18,9 +18,7 @@ class Header extends React.Component {
 
                 <NavItem><Link to="/aboutme" className="nav-link">About Me</Link></NavItem>
 
-                <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>
-
-                {/* <NavItem> <LogoutButton logout={this.props.logout}>Logout</LogoutButton></NavItem> */}
+               {this.props.userName ? <NavItem> <LogoutButton onLogout={this.props.onLogout} /></NavItem>: <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>}
 
             </Navbar>
         )

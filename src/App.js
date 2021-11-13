@@ -24,6 +24,7 @@ class App extends React.Component {
       user: null,
       google: [],
       accessToken: '',
+      timeZone: '',
     }
   }
 
@@ -35,11 +36,12 @@ class App extends React.Component {
     this.getEvents();
   }
 
-  // logout = () => {
 
-  //   this.setState({ accessToken: '' });
-  //   this.setState({ google: [] })
-  // }
+  onLogout = () => {
+    this.setState({ accessToken: ''});
+    this.setState({ google: [] })
+  }
+
 
   getEvents = async () => {
     let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -49,6 +51,8 @@ class App extends React.Component {
     try {
       let eventData = await axios.get(URL, config);
       console.log(eventData);
+      this.setState({timeZone: eventData.data.timeZone});
+      console.log(this.state.timeZone);
     }
     catch (err) {
       console.log('there was an error', err);
@@ -62,7 +66,9 @@ class App extends React.Component {
 
 
         <Router>
-          <Header resGoogle={this.resGoogle} logout={this.logout} />
+
+          <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name}/>
+
           {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
 
           <Switch>

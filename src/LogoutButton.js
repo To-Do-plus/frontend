@@ -1,18 +1,22 @@
 import React from 'react';
-import GoogleLogout from 'react-google-login';
+
+import { Button } from 'react-bootstrap'
+// import { withAuth0 } from '@auth0/auth0-react';
+ 
 
 class LogoutButton extends React.Component {
-  render() {
-    return (
-      <>
-        <GoogleLogout
-          clientId='800440768090-n9kc75hsra6cfeq27kvu0fhgc90d1cbb.apps.googleusercontent.com'
-          buttonText='Logout'
-          onLogoutSuccess={this.props.logout}
-        />
-      </>
-    )
-  }
+
+
+
+    render() {
+        return(
+            <>
+            <Button onClick={() => this.props.onLogout()}>Logout</Button>
+            </>
+
+        )
+    }
+
 }
 
 export default LogoutButton;
