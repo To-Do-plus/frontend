@@ -38,6 +38,11 @@ class App extends React.Component {
     this.getEvents();
   }
 
+  onLogout = () => {
+    this.setState({ accessToken: ''});
+    this.setState({ google: [] })
+  }
+
   getEvents = async () => {
     let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
     let config = {
@@ -61,7 +66,7 @@ class App extends React.Component {
 
 
         <Router>
-          <Header resGoogle={this.resGoogle} />
+          <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name}/>
           {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
 
           <Switch>
