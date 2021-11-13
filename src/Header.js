@@ -6,7 +6,7 @@ import './Header.css';
 import './LoginButton';
 import LoginButton from './LoginButton';
 // import LogoutButton from './LogoutButton';
-import { withAuth0 } from '@auth0/auth0-react'; 
+import { withAuth0 } from '@auth0/auth0-react';
 
 class Header extends React.Component {
     render() {
@@ -14,7 +14,8 @@ class Header extends React.Component {
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand>Calendar Carousel</Navbar.Brand>
                 <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
-                <NavItem> <LoginButton resGoogle={this.props.resGoogle}/></NavItem>
+                <NavItem><Link to="/aboutme" className="nav-link">About Me</Link></NavItem>
+                <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>
                 {/* <NavItem> <LogoutButton>Logout</LogoutButton></NavItem> */}
             </Navbar>
         )

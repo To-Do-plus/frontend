@@ -4,6 +4,9 @@ import { Navbar, Container, Row, Col } from 'react-bootstrap';
 import AddTDItem from './AddTDItem';
 import TDItems from './TDItems';
 
+
+
+
 class Main extends React.Component {
 
   constructor(props) {
@@ -38,9 +41,6 @@ class Main extends React.Component {
   render() {
     return (
       <>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Calendar Carousel</Navbar.Brand>
-        </Navbar>
         <Container fluid>
           <Row>
             <Col><h1>Your To Do List!</h1></Col>
@@ -53,6 +53,7 @@ class Main extends React.Component {
               <TDItems toDoList={this.state.toDoList} deleteToDo={this.deleteToDo} />
             </Col>
           </Row>
+
         </Container>
       </>
     );
