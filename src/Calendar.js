@@ -4,10 +4,9 @@ import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { formatDate } from '@fullcalendar/react';
-import { createEventId } from './event-utils';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 
-class CalendarComponent2 extends React.Component {
+class Calendar extends React.Component {
   
   state = {
     weekendsVisible: true,
@@ -16,7 +15,7 @@ class CalendarComponent2 extends React.Component {
 
   calendar = {
     plugins: [ googleCalendarPlugin ],
-    googleCalendarApiKey: 'AIzaSyAT6DJDQBoQCweO1Q1htw-YR0M3c5nfD-k',
+    googleCalendarApiKey: 'AIzaSyAT6DJDQBoQCweO1Q1htw-YR0M3c5nfD-k', // Console API_KEY here
     events: {
       googleCalendarId: this.props.googleState.email,
       className: 'gcal-event' // an option!
@@ -26,7 +25,6 @@ class CalendarComponent2 extends React.Component {
   render() {
     return (
       <div className='demo-app'>
-        <h1> {this.props.googleState.email} </h1>}
         {this.renderSidebar()}
         <div className='demo-app-main'>
           <FullCalendar
@@ -44,12 +42,11 @@ class CalendarComponent2 extends React.Component {
             selectMirror={true}
             dayMaxEvents={true}
             weekends={this.state.weekendsVisible}
-            // initialEvents={this.calendar.events.googleCalendarId} // alternatively, use the `events` setting to fetch from a feed
-            // initialEvents={ INITIAL_EVENTS }
             select={this.handleDateSelect}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            themeSystem='standard'
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
@@ -73,14 +70,6 @@ class CalendarComponent2 extends React.Component {
           </ul>
         </div>
         <div className='demo-app-sidebar-section'>
-          <label>
-            <input
-              type='checkbox'
-              checked={this.state.weekendsVisible}
-              onChange={this.handleWeekendsToggle}
-            ></input>
-            toggle weekends
-          </label>
         </div>
         <div className='demo-app-sidebar-section'>
           <h2>All Events ({this.state.currentEvents.length})</h2>
@@ -106,7 +95,6 @@ class CalendarComponent2 extends React.Component {
 
     if (title) {
       calendarApi.addEvent({
-        id: createEventId(),
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
@@ -147,4 +135,4 @@ function renderSidebarEvent(event) {
   )
 }
 
-export default CalendarComponent2;
+export default Calendar;

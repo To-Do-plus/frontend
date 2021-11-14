@@ -1,11 +1,10 @@
 import React from 'react';
-// import Calendar from 'react-calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
 import Main from './Components/Main'
 import AboutMe from './Components/AboutMe'
-import CalendarComponent2 from './CalendarComponent2';
+import Calendar from './Calendar';
 
 import {
   BrowserRouter as Router,
@@ -142,7 +141,7 @@ class App extends React.Component {
 
           <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
 
-          {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
+          {this.state.google.name ? <h2>Welcome: {this.state.google.name}</h2> : <h2>Please Login</h2>}
           <Switch>
             <Route exact path="/">
               {this.state.google.name ? <Main
@@ -151,7 +150,7 @@ class App extends React.Component {
                 toDoList={this.thDoList}
                 timeZone={this.state.timeZone}
               /> : ""}
-              {this.state.google.name ? <CalendarComponent2 googleState={this.state.google}/> : ""}
+              {this.state.google.name ? <Calendar googleState={this.state.google} /> : ""}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

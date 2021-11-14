@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import { Container, Row } from 'react-bootstrap';
 import Chris from './headshots/Chris.jfif';
 import Jae from './headshots/Jae.jpg';
+import Anthony from './headshots/Anthony.jpg';
 
 
 class AboutMe extends React.Component {
@@ -32,7 +33,7 @@ class AboutMe extends React.Component {
               </Card.Body>
             </Card>
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={Chris} />
+              <Card.Img variant="top" src={Anthony} />
               <Card.Body>
                 <Card.Title>Anthony Turinski</Card.Title>
                 <Card.Text>
