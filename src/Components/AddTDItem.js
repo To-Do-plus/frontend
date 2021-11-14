@@ -39,7 +39,7 @@ class AddTDItem extends React.Component {
     // onChange={this.handleChange}
     return (
       <Form data-testid="add-form" onSubmit={this.handleSubmit}>
-        <Card style={{ width: '20rem' }}>
+        <Card style={{ width: '21rem' }}>
           <Card.Header>What's On Your List?</Card.Header>
           <Card.Body>
             <Form.Group>
