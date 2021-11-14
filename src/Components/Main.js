@@ -10,30 +10,11 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      toDoList: []
+
     }
   }
 
-  addToDo = async (TDThing) => {
-    await axios.post(`${process.env.REACT_APP_API}/ROUTE`, TDThing);
-    this.getToDos();
-  }
 
-  getToDos = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_API}/ROUTE`);
-    const toDoList = response.data;
-    console.log(response.data)
-    this.setState({ toDoList });
-  }
-
-  deleteToDo = async (passedId) => {
-    await axios.delete(`${process.env.REACT_APP_API}/ROUTE/${passedId}`);
-    this.getToDos();
-  }
-
-  componentDidMount() {
-    this.getToDos();
-  }
 
 
   render() {
@@ -45,10 +26,10 @@ class Main extends React.Component {
           </Row>
           <Row>
             <Col md="auto">
-              <AddTDItem addToDo={this.addToDo} />
+              <AddTDItem addToServer={this.props.addToServer} timeZone={this.props.timeZone} />
             </Col>
             <Col>
-              <TDItems toDoList={this.state.toDoList} deleteToDo={this.deleteToDo} />
+              <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} />
             </Col>
           </Row>
 

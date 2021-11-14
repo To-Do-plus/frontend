@@ -12,7 +12,7 @@ class TDItems extends React.Component {
       <section>
 
         <h2>Things on your List:</h2>
-        {
+        {this.props.toDoList ?
           this.props.toDoList.map((tDThing) =>
             <Card key={tDThing._id}>
               <Card.Body>
@@ -22,7 +22,7 @@ class TDItems extends React.Component {
               </Card.Body>
 
             </Card>
-          )
+          ) : ''
         }
 
 

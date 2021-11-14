@@ -25,6 +25,7 @@ class App extends React.Component {
       google: [],
       accessToken: '',
       timeZone: '',
+      toDoList: []
     }
   }
 
@@ -33,17 +34,18 @@ class App extends React.Component {
     this.setState({ accessToken: res.tokenObj.access_token });
     this.setState({ google: res.profileObj })
     console.log(this.state.google);
-    this.getEvents();
+    this.getEventsAPI();
   }
 
 
   onLogout = () => {
-    this.setState({ accessToken: ''});
+    this.setState({ accessToken: '' });
     this.setState({ google: [] })
   }
 
 
-  getEvents = async () => {
+  getEventsAPI = async () => {
+    // This function here is pulling things fromt he API NOT the server
     let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
     let config = {
       headers: { "Authorization": `Bearer ${this.state.accessToken}` }
@@ -51,12 +53,36 @@ class App extends React.Component {
     try {
       let eventData = await axios.get(URL, config);
       console.log(eventData);
-      this.setState({timeZone: eventData.data.timeZone});
+      this.setState({
+        timeZone: eventData.data.timeZone
+      });
+      this.setState({
+        toDoList: eventData.data.items
+      });
+
       console.log(this.state.timeZone);
     }
     catch (err) {
-      console.log('there was an error', err);
+      console.log('there was an error with the API get', err);
     }
+  }
+
+  // getFromServer =
+
+  addToServer = async (TDThing) => {
+    let newTask = await axios.post(`${process.env.REACT_APP_API}/events`, TDThing);
+    this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
+    this.getEventsAPI();
+    console.log('newTask', newTask.data);
+  }
+
+  deleteToDo = async (passedId) => {
+    await axios.delete(`${process.env.REACT_APP_API}/ROUTE/${passedId}`);
+    this.getEventsAPI();
+  }
+
+  componentDidMount() {
+    this.getEventsAPI();
   }
 
   render() {
@@ -67,13 +93,18 @@ class App extends React.Component {
 
         <Router>
 
-          <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name}/>
+          <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
 
           {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
 
           <Switch>
             <Route exact path="/">
-              {this.state.google.name ? <Main /> : ""}
+              {this.state.google.name ? <Main
+                deleteToDo={this.deleteToDo}
+                addToServer={this.addToServer}
+                toDoList={this.thDoList}
+                timeZone={this.state.timeZone}
+              /> : ""}
               {this.state.google.name ? <Calendar /> : ""}
             </Route>
             <Route exact path="/aboutme">
@@ -81,8 +112,6 @@ class App extends React.Component {
             </Route>
           </Switch>
         </Router>
-
-
 
 
       </>
