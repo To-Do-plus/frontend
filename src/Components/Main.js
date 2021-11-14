@@ -3,19 +3,9 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import AddTDItem from './AddTDItem';
 import TDItems from './TDItems';
-
+import Starburst from './Starburst';
 
 class Main extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
-
-
 
   render() {
     return (
@@ -30,6 +20,9 @@ class Main extends React.Component {
             </Col>
             <Col>
               <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} />
+            </Col>
+            <Col style={{ width: '20rem' }}>
+              <Starburst toDoList={this.props.toDoList} />
             </Col>
           </Row>
 
