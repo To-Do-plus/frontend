@@ -146,7 +146,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {this.state.google.name ? <Main
-                deleteToDo={this.deleteToDo}
+                deleteToDo={this.deleteFromServer}
                 addToServer={this.addToServer}
                 toDoList={this.thDoList}
                 timeZone={this.state.timeZone}
