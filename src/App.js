@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from 'react-calendar';
+import CalendarComponent from './CalendarComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -74,7 +74,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {this.state.google.name ? <Main /> : ""}
-              {this.state.google.name ? <Calendar /> : ""}
+              {this.state.google.name ? <CalendarComponent /> : ""}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

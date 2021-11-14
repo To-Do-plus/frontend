@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
+    "@emotion/react": "^11.5.0",
+    "@ericz1803/react-google-calendar": "^4.2.1",
     "@syncfusion/ej2-react-calendars": "^19.3.53",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
