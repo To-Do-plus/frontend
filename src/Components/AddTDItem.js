@@ -38,14 +38,14 @@ class AddTDItem extends React.Component {
 
     return (
       <Form data-testid="add-form" onSubmit={this.handleSubmit}>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '20rem' }}>
           <Card.Header>What's On Your List?</Card.Header>
           <Card.Body>
             <Form.Group>
               <Form.Label>Task Summary</Form.Label>
               <Form.Control type="text" placeholder="What do you need to do?" summary="summary" onChange={this.handleChange} />
               <Form.Label>Task Location</Form.Label>
-              <Form.Control type="text" placeholder="Where does this need to happen?" location="location" onChange={this.handleChange} />
+              <Form.Control type="text" placeholder="Where do you need to do it?" location="location" onChange={this.handleChange} />
               <Form.Label>Task Description</Form.Label>
               <Form.Control type="text" placeholder="Any details to remember?" description="description" onChange={this.handleChange} />
               <Form.Label>Start Time</Form.Label>
