@@ -36,7 +36,7 @@ class AboutMe extends React.Component {
                 <div >
                   <h5 className="text-end">Jae Loney</h5>
                   <p className="text-center">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                     Jae is a Software Developer with experience in Project Management and Accounts Management who loves learning, solving problems, and organizing teams. Jae enjoys working with Javascript in both front-end and back-end applications and hopes to use their skills to bring websites to life with people who are working to change the world for the better. In the unlikely event of having free time, Jae loves exploring New York City (and anywhere else they can get to!), writing, and performing Sketch Comedy.
                   </p>
                 </div>
               </div>

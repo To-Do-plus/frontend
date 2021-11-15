@@ -2,7 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-// import DateTimePicker from 'react-datetimepicker-bootstrap';
+import DateChooser from './DateChooser';
+import DateTimeStart from './DateTimeStart';
+import DateTimeEnd from './DateTimeEnd';
+
 
 class AddTDItem extends React.Component {
 
@@ -23,36 +26,37 @@ class AddTDItem extends React.Component {
       location: (e.target.location.value),
       description: (e.target.description.value),
       start: {
-        dateTime: (e.target.startTime.value),
+        dateTime: (e.target.startTime),
         timeZone: this.props.timeZone,
       },
       end: {
-        dateTime: (e.target.endTime.value),
+        dateTime: (e.target.endTime),
         timeZone: this.props.timeZone,
       },
     }
     this.props.addToServer(newTask)
+    console.log(newTask)
   }
 
   render() {
     // onChange={this.handleChange}
     return (
-      <Form data-testid="add-form" onSubmit={this.handleSubmit}>
-        <Card style={{ width: '20rem' }}>
+      <Form onSubmit={this.handleSubmit}>
+        <Card style={{ width: '21rem' }}>
           <Card.Header>What's On Your List?</Card.Header>
           <Card.Body>
             <Form.Group>
               <Form.Label>Task Summary</Form.Label>
-              <Form.Control type="text" placeholder="What do you need to do?" id="summary"  />
+              <Form.Control type="text" placeholder="What do you need to do?" id="summary" />
               <Form.Label>Task Location</Form.Label>
-              <Form.Control type="text" placeholder="Where does this need to happen?" id="location"  />
+              <Form.Control type="text" placeholder="Where does this need to happen?" id="location" />
               <Form.Label>Task Description</Form.Label>
-              <Form.Control type="text" placeholder="Any details to remember?" id="description"  />
-              <Form.Label>Start Time</Form.Label>
-              <Form.Control type="text" placeholder="When do you want to start?" id="startTime"  />
-              <Form.Label>End Time</Form.Label>
-              <Form.Control type="text" placeholder="How long will this task take?" id="endTime"  />
+              <Form.Control type="text" placeholder="Any details to remember?" id="description" />
+
             </Form.Group>
+            {/* <DateChooser /> */}
+            <DateTimeStart id="startTime" />
+            <DateTimeEnd id="endTime" />
             <Button variant="primary" type="submit">Add To The List!</Button>
           </Card.Body>
         </Card>

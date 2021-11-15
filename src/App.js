@@ -52,7 +52,7 @@ class App extends React.Component {
     }
     try {
       let eventData = await axios.get(URL, config);
-      
+
       this.setState({
         timeZone: eventData.data.timeZone
       });
@@ -71,9 +71,9 @@ class App extends React.Component {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
     let url = `http://localhost:3001/books`;
     axios.get(url)
-    .then(eventObj => eventObj.data)
-    .then(data => this.setState({toDoList: data}))
-    .catch(error => console.log('error', error.message));
+      .then(eventObj => eventObj.data)
+      .then(data => this.setState({ toDoList: data }))
+      .catch(error => console.log('error', error.message));
   }
 
   // getFromServer =?email=${this.state.google.email}
@@ -86,11 +86,11 @@ class App extends React.Component {
     console.log('newTask', newTask.data);
   }
 
-  handleUpdate = async (event) =>{
+  handleUpdate = async (event) => {
     let url = `${process.env.REACT_APP_API}/events/${event._id}`;
 
-    let putObj ={
-      summary:event.summary,
+    let putObj = {
+      summary: event.summary,
       location: event.location,
       description: event.description,
       start: {
@@ -102,7 +102,7 @@ class App extends React.Component {
         timeZone: event.timeZone,
       },
     }
-    await axios.put(url,putObj);
+    await axios.put(url, putObj);
     // let updatedData = updatedEvent.data;
     // let copyState = this.state.thDoList.map((event, idx) => {
     //   if(event._id === updatedData._id) return updatedData;
@@ -121,7 +121,7 @@ class App extends React.Component {
     console.log(deletedEventData);
     let copyState = this.state.toDoList
     let filteredEvents = copyState.filter((item) => item._id !== deletedEventData._id);
-    this.setState({toDoList: filteredEvents});
+    this.setState({ toDoList: filteredEvents });
     // this.getEventsAPI(); STRETCH GOAL TO DELETE OFF OF GOOGLE CALENDAR
     // this.getEventsServer();
   }
@@ -141,7 +141,7 @@ class App extends React.Component {
 
           <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
 
-          {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : ''}
+
 
           <Switch>
             <Route exact path="/">
