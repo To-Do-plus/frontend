@@ -25,8 +25,20 @@ class App extends React.Component {
       google: [],
       accessToken: '',
       timeZone: '',
+      startDateTime: Date(),
+      endDateTime: Date(),
       toDoList: []
     }
+  }
+
+  handleStartDateTime = (date) =>{
+    this.setState({startDateTime: date});
+    console.log(this.state.startDateTime);
+  }
+
+  handleEndDateTime = (date) =>{
+    this.setState({endDateTime: date});
+    console.log(this.state.endDateTime);
   }
 
   resGoogle = (res) => {
@@ -135,30 +147,30 @@ class App extends React.Component {
 
     return (
       <>
-
+      
 
         <Router>
 
           <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
-
+          
 
 
           <Switch>
             <Route exact path="/">
 
-              {this.state.google.name ? <Main
-
-                
+              {this.state.google.name ? 
+              <Main
                 handleUpdate={this.handleUpdate}
-
                 deleteToDo={this.deleteFromServer}
-
-
                 addToServer={this.addToServer}
                 toDoList={this.toDoList}
                 timeZone={this.state.timeZone}
-              />,
-                <Calendar />) : ""}
+                startDateTime={this.state.startDateTime}
+                endDateTime={this.state.endDateTime}
+                handleEndDateTime={this.handleEndDateTime}
+                handleStartDateTime={this.handleStartDateTime}
+              /> : ""}
+               {this.state.google.name ? <Calendar /> : ""} 
 
             </Route>
             <Route exact path="/aboutme">
