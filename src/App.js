@@ -173,7 +173,7 @@ class App extends React.Component {
                   handleUpdate={this.handleUpdate}
                   deleteToDo={this.deleteFromServer}
                   addToServer={this.addToServer}
-                  toDoList={this.toDoList}
+                  toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
                   startDateTime={this.state.startDateTime}
                   endDateTime={this.state.endDateTime}
