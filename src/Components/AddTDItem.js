@@ -26,11 +26,11 @@ class AddTDItem extends React.Component {
       location: (e.target.location.value),
       description: (e.target.description.value),
       start: {
-        dateTime: (e.target.startTime),
+        dateTime: this.props.startDateTime,
         timeZone: this.props.timeZone,
       },
       end: {
-        dateTime: (e.target.endTime),
+        dateTime: this.props.endDateTime,
         timeZone: this.props.timeZone,
       },
     }
