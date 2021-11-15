@@ -69,9 +69,18 @@ class App extends React.Component {
       this.setState({
         timeZone: eventData.data.timeZone
       });
-      this.setState({
-        toDoList: eventData.data.items
-      });
+      eventData.data.items.map((events, idx) =>{
+        let eachTask = {
+          summary: events.summary,
+          location: events.location,
+          description: events.description,
+          start: events.start,
+          end: events.end
+        }
+        this.state.toDoList.push(eachTask);
+        return this.state.toDoList;
+        
+      })
       console.log(this.state.toDoList);
       console.log(this.state.timeZone);
     }
@@ -82,7 +91,7 @@ class App extends React.Component {
 
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
-    let url = `http://localhost:3001/books`;
+    let url = `http://localhost:3001/events`;
     axios.get(url)
       .then(eventObj => eventObj.data)
       .then(data => this.setState({ toDoList: data }))
@@ -164,7 +173,7 @@ class App extends React.Component {
                   handleUpdate={this.handleUpdate}
                   deleteToDo={this.deleteFromServer}
                   addToServer={this.addToServer}
-                  toDoList={this.toDoList}
+                  toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
                   startDateTime={this.state.startDateTime}
                   endDateTime={this.state.endDateTime}
