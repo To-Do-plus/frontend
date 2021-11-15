@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import AddTDItem from './AddTDItem';
 import TDItems from './TDItems';
@@ -17,7 +16,7 @@ class Main extends React.Component {
           <Row>
             <Col md="auto">
               <AddTDItem addToServer={this.props.addToServer} timeZone={this.props.timeZone} startDateTime={this.props.startDateTime} endDateTime={this.props.endDateTime}
-              handleStartDateTime={this.props.handleStartDateTime} handleEndDateTime={this.props.handleEndDateTime}/>
+                handleStartDateTime={this.props.handleStartDateTime} handleEndDateTime={this.props.handleEndDateTime} />
             </Col>
             <Col>
               <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} handleUpdate={this.props.handleUpdate} />

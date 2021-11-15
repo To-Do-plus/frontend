@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import { Container, Row } from 'react-bootstrap';
+
+import { Container } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import Chris from './headshots/Chris.jfif';
 import Jae from './headshots/Jae.jpg';
