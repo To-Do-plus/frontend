@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const DateTime = () => {
+const DateTimeStart = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   return (
@@ -22,4 +22,4 @@ const DateTime = () => {
   );
 };
 
-export default DateTime;
+export default DateTimeStart;
