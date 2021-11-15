@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const DateChooser = () => {
-  const [startDate, setStartDate] = useState(new Date("2021/11/18"));
-  const [endDate, setEndDate] = useState(new Date("2021/11/18"));
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   return (
     <>
