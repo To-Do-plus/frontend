@@ -141,10 +141,11 @@ class App extends React.Component {
 
           <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
 
-          {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : <h2>Please Login</h2>}
+          {this.state.google.name ? <h2>Welcome:{this.state.google.name}</h2> : ''}
 
           <Switch>
             <Route exact path="/">
+
               {this.state.google.name ? <Main
 
                 
@@ -152,11 +153,13 @@ class App extends React.Component {
 
                 deleteToDo={this.deleteFromServer}
 
+
                 addToServer={this.addToServer}
-                toDoList={this.thDoList}
+                toDoList={this.toDoList}
                 timeZone={this.state.timeZone}
-              /> : ""}
-              {this.state.google.name ? <Calendar /> : ""}
+              />,
+                <Calendar />) : ""}
+
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />
