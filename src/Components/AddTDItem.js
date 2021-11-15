@@ -52,11 +52,11 @@ class AddTDItem extends React.Component {
               <Form.Control type="text" placeholder="Where does this need to happen?" id="location" />
               <Form.Label>Task Description</Form.Label>
               <Form.Control type="text" placeholder="Any details to remember?" id="description" />
-
             </Form.Group>
-            {/* <DateChooser /> */}
-            <DateTimeStart id="startTime" />
-            <DateTimeEnd id="endTime" />
+            <DateChooser startDateTime={this.props.startDateTime} endDateTime={this.props.endDateTime} handleStartDateTime={this.props.handleStartDateTime} 
+            handleEndDateTime={this.props.handleEndDateTime} />
+            {/* <DateTimeStart id="startTime" />
+            <DateTimeEnd id="endTime" endDateTime={this.props.endDateTime}/> */}
             <Button variant="primary" type="submit">Add To The List!</Button>
           </Card.Body>
         </Card>

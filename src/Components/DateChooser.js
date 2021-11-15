@@ -1,40 +1,54 @@
-import React, { useState } from 'react';
+
 import DatePicker from "react-datepicker";
+import React from "react";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+class DateChooser extends React.Component{
+  constructor(props){
+    super(props); 
+      this.state = {
+        start : new Date(),
+        end : new Date()
+      }
+    }
+  
+handleStart = (date) => {
+  this.setState({start:date});
+}
+handleEnd = (date) => {
+  this.setState({end:date});
+}
 
-const DateChooser = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-
-  return (
+render(){ 
+return (
+    
     <>
       <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        selected={this.state.start}
+        onChange={(date) => this.props.handleStartDateTime(date) & this.handleStart(date)}
         selectsStart
-        startDate={startDate}
-        endDate={endDate}
+        startDate={this.state.start}
+        endDate={this.state.end}
         showTimeSelect
         timeFormat="p"
         timeIntervals={15}
         dateFormat="Pp"
       />
       <DatePicker
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
+        selected={this.state.end}
+        onChange={(date) => this.props.handleEndDateTime(date) & this.handleEnd(date)}
         selectsEnd
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
+        startDate={this.state.start}
+        endDate={this.state.end}
+        minDate={this.state.start}
         showTimeSelect
         timeFormat="p"
         timeIntervals={15}
         dateFormat="Pp"
       />
     </>
-  );
-};
-
+  )
+}
+}
 export default DateChooser;
