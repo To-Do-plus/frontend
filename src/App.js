@@ -52,14 +52,14 @@ class App extends React.Component {
     }
     try {
       let eventData = await axios.get(URL, config);
-      console.log(eventData);
+      
       this.setState({
         timeZone: eventData.data.timeZone
       });
       this.setState({
         toDoList: eventData.data.items
       });
-
+      console.log(this.state.toDoList);
       console.log(this.state.timeZone);
     }
     catch (err) {
@@ -67,22 +67,68 @@ class App extends React.Component {
     }
   }
 
-  // getFromServer =
+  getEventsServer = async () => {
+    //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
+    let url = `http://localhost:3001/books`;
+    axios.get(url)
+    .then(eventObj => eventObj.data)
+    .then(data => this.setState({toDoList: data}))
+    .catch(error => console.log('error', error.message));
+  }
+
+  // getFromServer =?email=${this.state.google.email}
 
   addToServer = async (TDThing) => {
-    let newTask = await axios.post(`${process.env.REACT_APP_API}/events`, TDThing);
+    let newTask = await axios.post(`http://localhost:3001/events`, TDThing);
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
     this.getEventsAPI();
+    this.getEventsServer();
     console.log('newTask', newTask.data);
   }
 
-  deleteToDo = async (passedId) => {
-    await axios.delete(`${process.env.REACT_APP_API}/ROUTE/${passedId}`);
-    this.getEventsAPI();
+  handleUpdate = async (event) =>{
+    let url = `${process.env.REACT_APP_API}/events/${event._id}`;
+
+    let putObj ={
+      summary:event.summary,
+      location: event.location,
+      description: event.description,
+      start: {
+        dateTime: event.dateTime,
+        timeZone: event.timeZone,
+      },
+      end: {
+        dateTime: event.dateTime,
+        timeZone: event.timeZone,
+      },
+    }
+    await axios.put(url,putObj);
+    // let updatedData = updatedEvent.data;
+    // let copyState = this.state.thDoList.map((event, idx) => {
+    //   if(event._id === updatedData._id) return updatedData;
+    //   else {return event};
+    // })
+    // this.setState({
+    //   toDoList: copyState
+    // })
+    this.getEventsServer();
+  }
+
+  deleteFromServer = async (passedId) => {
+    let deletedEvent = await axios.delete(`${process.env.REACT_APP_API}/events/${passedId}`);
+    console.log(passedId);
+    let deletedEventData = deletedEvent.data
+    console.log(deletedEventData);
+    let copyState = this.state.toDoList
+    let filteredEvents = copyState.filter((item) => item._id !== deletedEventData._id);
+    this.setState({toDoList: filteredEvents});
+    // this.getEventsAPI(); STRETCH GOAL TO DELETE OFF OF GOOGLE CALENDAR
+    // this.getEventsServer();
   }
 
   componentDidMount() {
     this.getEventsAPI();
+    this.getEventsServer();
   }
 
   render() {
@@ -99,8 +145,15 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/">
-              {this.state.google.name ? (<Main
-                deleteToDo={this.deleteToDo}
+
+              {this.state.google.name ? <Main
+
+                
+                handleUpdate={this.handleUpdate}
+
+                deleteToDo={this.deleteFromServer}
+
+
                 addToServer={this.addToServer}
                 toDoList={this.toDoList}
                 timeZone={this.state.timeZone}
