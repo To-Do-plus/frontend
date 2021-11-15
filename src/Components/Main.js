@@ -19,7 +19,7 @@ class Main extends React.Component {
               <AddTDItem addToServer={this.props.addToServer} timeZone={this.props.timeZone} />
             </Col>
             <Col>
-              <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} />
+              <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} handleUpdate={this.props.handleUpdate} />
             </Col>
             <Col style={{ width: '20rem' }}>
               <Starburst toDoList={this.props.toDoList} />
