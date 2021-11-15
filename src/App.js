@@ -5,7 +5,8 @@ import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
 import Main from './Components/Main'
 import AboutMe from './Components/AboutMe'
-
+import ToDoPlus from './ToDoPlus.png';
+import Image from 'react-bootstrap/Image';
 
 import {
   BrowserRouter as Router,
@@ -31,13 +32,13 @@ class App extends React.Component {
     }
   }
 
-  handleStartDateTime = (date) =>{
-    this.setState({startDateTime: date});
+  handleStartDateTime = (date) => {
+    this.setState({ startDateTime: date });
     console.log(this.state.startDateTime);
   }
 
-  handleEndDateTime = (date) =>{
-    this.setState({endDateTime: date});
+  handleEndDateTime = (date) => {
+    this.setState({ endDateTime: date });
     console.log(this.state.endDateTime);
   }
 
@@ -147,30 +148,30 @@ class App extends React.Component {
 
     return (
       <>
-      
+
 
         <Router>
 
           <Header resGoogle={this.resGoogle} onLogout={this.onLogout} userName={this.state.google.name} />
-          
+
 
 
           <Switch>
             <Route exact path="/">
 
-              {this.state.google.name ? 
-              <Main
-                handleUpdate={this.handleUpdate}
-                deleteToDo={this.deleteFromServer}
-                addToServer={this.addToServer}
-                toDoList={this.toDoList}
-                timeZone={this.state.timeZone}
-                startDateTime={this.state.startDateTime}
-                endDateTime={this.state.endDateTime}
-                handleEndDateTime={this.handleEndDateTime}
-                handleStartDateTime={this.handleStartDateTime}
-              /> : ""}
-               {this.state.google.name ? <Calendar /> : ""} 
+              {this.state.google.name ?
+                <Main
+                  handleUpdate={this.handleUpdate}
+                  deleteToDo={this.deleteFromServer}
+                  addToServer={this.addToServer}
+                  toDoList={this.toDoList}
+                  timeZone={this.state.timeZone}
+                  startDateTime={this.state.startDateTime}
+                  endDateTime={this.state.endDateTime}
+                  handleEndDateTime={this.handleEndDateTime}
+                  handleStartDateTime={this.handleStartDateTime}
+                /> : ""}
+              {this.state.google.name ? <Calendar /> : <Image fluid src={ToDoPlus} />}
 
             </Route>
             <Route exact path="/aboutme">
