@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import Chris from './headshots/Chris.jfif';
 import Jae from './headshots/Jae.jpg';
+import Anthony from './headshots/Anthony.jpg';
 
 
 
@@ -49,7 +50,7 @@ class AboutMe extends React.Component {
           <div className="card mb-1" style={{ width: '70rem' }}>
             <div className="row no-gutters">
               <div className="col-md-2 ">
-                <Image style={{ width: '100%' }} src={Chris} rounded />
+                <Image style={{ width: '100%' }} src={Anthony} rounded />
               </div>
               <div className="col-md-10">
                 <div >
