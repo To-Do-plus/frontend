@@ -20,8 +20,8 @@ class TDItems extends React.Component {
                 <Card.Text>
                   <p>Details: {tDThing.description} </p>
                   <p>Location: {tDThing.location}</p>
-                  <p>Start Time: {tDThing.startTime}</p>
-                  <p>End Time: {tDThing.endTime}</p>
+                  <p>Start Time: {tDThing.start.dateTime} </p>
+                  <p>End Time: {tDThing.end.dateTime}</p>
                 </Card.Text>
                 <Button variant="success" onClick={() => { this.props.deleteToDo(tDThing._id) }}>Done!</Button>
 

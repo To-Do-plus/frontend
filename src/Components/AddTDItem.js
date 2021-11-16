@@ -3,8 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import DateChooser from './DateChooser';
-import DateTimeStart from './DateTimeStart';
-import DateTimeEnd from './DateTimeEnd';
+
 
 
 class AddTDItem extends React.Component {
@@ -55,8 +54,6 @@ class AddTDItem extends React.Component {
             </Form.Group>
             <DateChooser startDateTime={this.props.startDateTime} endDateTime={this.props.endDateTime} handleStartDateTime={this.props.handleStartDateTime} 
             handleEndDateTime={this.props.handleEndDateTime} />
-            {/* <DateTimeStart id="startTime" />
-            <DateTimeEnd id="endTime" endDateTime={this.props.endDateTime}/> */}
             <Button variant="primary" type="submit">Add To The List!</Button>
           </Card.Body>
         </Card>
