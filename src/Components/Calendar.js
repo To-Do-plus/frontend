@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { formatDate } from '@fullcalendar/react';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import UpdateTask from './UpdateTask';
 
 class Calendar extends React.Component {
   
@@ -13,6 +14,8 @@ class Calendar extends React.Component {
     currentEvents: [],
   }
 
+  calendarRef = React.createRef();
+
   calendar = {
     plugins: [ googleCalendarPlugin ],
     googleCalendarApiKey: 'AIzaSyCV81aGBz0ZSJjUpP1k7R8UvwQrt7sSqxk', // Console API_KEY here
@@ -20,6 +23,18 @@ class Calendar extends React.Component {
       googleCalendarId: this.props.googleState.email,
       className: 'gcal-event' // an option!
     }
+  }
+
+  constructor(props) {
+    super(props);
+    this.props.updateCalendarRef(this.calendarRef);
+  }
+
+  
+
+  runUpdateForm = (item) => {
+    this.props.updateformHandler(item);
+    console.log(this.props.showUpdate);
   }
 
   render() {
@@ -47,6 +62,7 @@ class Calendar extends React.Component {
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
             themeSystem='standard'
+            ref={this.calendarRef}
             /* you can update a remote database when these fire:
             eventAdd={function(){}}
             eventChange={function(){}}
@@ -54,6 +70,8 @@ class Calendar extends React.Component {
             */
           />
         </div>
+        <UpdateTask showUpdate={this.props.showUpdate} closeUpdate={this.props.closeUpdate} handleUpdate={this.props.handleUpdate} updatedObj={this.props.updatedObj} addToServer={this.props.addToServer} calendarRef={this.calendarRef}/>
+
       </div>
     )
   }
@@ -88,24 +106,12 @@ class Calendar extends React.Component {
   }
 
   handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
-    let calendarApi = selectInfo.view.calendar
-
-    calendarApi.unselect() // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      })
-    }
+    this.runUpdateForm(selectInfo);
   }
 
   handleEventClick = (clickInfo) => {
     if (`Are you sure you want to delete the event '${clickInfo.event.title}'`) {
-      clickInfo.event.remove()
+      // clickInfo.event.remove()
     }
   }
 
