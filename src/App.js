@@ -4,7 +4,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
 import Main from './Components/Main'
 import AboutMe from './Components/AboutMe'
-import Calendar from './Calendar';
+import Calendar from './Components/Calendar';
 
 import {
   BrowserRouter as Router,
