@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from 'react-calendar';
+import Calendar from './Components/Calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -180,7 +180,7 @@ class App extends React.Component {
                   handleEndDateTime={this.handleEndDateTime}
                   handleStartDateTime={this.handleStartDateTime}
                 /> : ""}
-              {this.state.google.name ? <Calendar /> : <Image fluid src={ToDoPlus} />}
+              {this.state.google.name ? <Calendar googleState={this.state.google} /> : <Image fluid src={ToDoPlus} />}
 
             </Route>
             <Route exact path="/aboutme">
