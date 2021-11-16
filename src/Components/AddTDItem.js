@@ -29,7 +29,7 @@ class AddTDItem extends React.Component {
         timeZone: this.props.timeZone,
       },
       end: {
-        dateTime: this.props.endDateTime,
+        dateTime: this.props.endDateTime.toString(),
         timeZone: this.props.timeZone,
       },
     }
@@ -43,7 +43,6 @@ class AddTDItem extends React.Component {
       end: new Date(newTask.end.dateTime).toISOString(),
       allDay: false
     });
-
   }
 
   render() {

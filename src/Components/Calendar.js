@@ -116,6 +116,13 @@ class Calendar extends React.Component {
     })
   }
 
+  // initializeDB = () => {
+  //   this.props.toDoList ? this.props.toDoList.forEach((element) {
+  //     this.calendarRef.addEvent((element) => {
+  //       id:
+  //     }
+  // }
+
 }
 
 function renderEventContent(eventInfo) {
