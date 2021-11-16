@@ -47,7 +47,7 @@ class App extends React.Component {
     this.setState({ accessToken: res.tokenObj.access_token });
     this.setState({ google: res.profileObj })
     console.log(this.state.google);
-    this.getEventsAPI();
+    // this.getEventsAPI();
   }
 
 
@@ -57,37 +57,37 @@ class App extends React.Component {
   }
 
 
-  getEventsAPI = async () => {
-    // This function here is pulling things fromt he API NOT the server
-    let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
-    let config = {
-      headers: { "Authorization": `Bearer ${this.state.accessToken}` }
-    }
-    try {
-      let eventData = await axios.get(URL, config);
+  // getEventsAPI = async () => {
+  //   // This function here is pulling things fromt he API NOT the server
+  //   let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
+  //   let config = {
+  //     headers: { "Authorization": `Bearer ${this.state.accessToken}` }
+  //   }
+  //   try {
+  //     let eventData = await axios.get(URL, config);
 
-      this.setState({
-        timeZone: eventData.data.timeZone
-      });
-      eventData.data.items.map((events, idx) =>{
-        let eachTask = {
-          summary: events.summary,
-          location: events.location,
-          description: events.description,
-          start: events.start,
-          end: events.end
-        }
-        this.state.toDoList.push(eachTask);
-        return this.state.toDoList;
+  //     this.setState({
+  //       timeZone: eventData.data.timeZone
+  //     });
+  //     // eventData.data.items.map((events, idx) =>{
+  //     //   let eachTask = {
+  //     //     summary: events.summary,
+  //     //     location: events.location,
+  //     //     description: events.description,
+  //     //     start: events.start,
+  //     //     end: events.end
+  //     //   }
+  //     //   this.state.toDoList.push(eachTask);
+  //     //   return this.state.toDoList;
         
-      })
-      console.log(this.state.toDoList);
-      console.log(this.state.timeZone);
-    }
-    catch (err) {
-      console.log('there was an error with the API get', err);
-    }
-  }
+  //     // })
+  //     console.log(this.state.toDoList);
+  //     console.log(this.state.timeZone);
+  //   }
+  //   catch (err) {
+  //     console.log('there was an error with the API get', err);
+  //   }
+  // }
 
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
@@ -103,7 +103,7 @@ class App extends React.Component {
   addToServer = async (TDThing) => {
     let newTask = await axios.post(`http://localhost:3001/events`, TDThing);
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
-    this.getEventsAPI();
+    // this.getEventsAPI();
     this.getEventsServer();
     console.log('newTask', newTask.data);
   }
@@ -149,7 +149,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getEventsAPI();
+    // this.getEventsAPI();
     this.getEventsServer();
   }
 

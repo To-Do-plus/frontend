@@ -15,7 +15,7 @@ class Calendar extends React.Component {
 
   calendar = {
     plugins: [ googleCalendarPlugin ],
-    googleCalendarApiKey: 'AIzaSyAT6DJDQBoQCweO1Q1htw-YR0M3c5nfD-k', // Console API_KEY here
+    googleCalendarApiKey: 'AIzaSyCV81aGBz0ZSJjUpP1k7R8UvwQrt7sSqxk', // Console API_KEY here
     events: {
       googleCalendarId: this.props.googleState.email,
       className: 'gcal-event' // an option!
