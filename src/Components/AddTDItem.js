@@ -34,7 +34,6 @@ class AddTDItem extends React.Component {
       },
     }
     const newTaskData = await this.props.addToServer(newTask)
-    alert(JSON.stringify(newTaskData))
     
     let calendarApi = this.props.calendarRef.current.getApi();
     calendarApi.addEvent({
@@ -45,7 +44,6 @@ class AddTDItem extends React.Component {
       allDay: false
     });
 
-    console.log(newTask)
   }
 
   render() {

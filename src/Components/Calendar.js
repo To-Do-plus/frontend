@@ -61,6 +61,7 @@ class Calendar extends React.Component {
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            eventDisplay='block'
             themeSystem='standard'
             ref={this.calendarRef}
             /* you can update a remote database when these fire:
@@ -71,7 +72,7 @@ class Calendar extends React.Component {
           />
         </div>
         <UpdateTask showUpdate={this.props.showUpdate} closeUpdate={this.props.closeUpdate} handleUpdate={this.props.handleUpdate} updatedObj={this.props.updatedObj} addToServer={this.props.addToServer} calendarRef={this.calendarRef}/>
-
+        {/* {this.props.toDoList ? this.initializeEvents() : ''} */}
       </div>
     )
   }
@@ -84,7 +85,7 @@ class Calendar extends React.Component {
           <ul>
             <li>Select dates and you will be prompted to create a new event</li>
             <li>Drag, drop, and resize events</li>
-            <li>Click an event to delete it</li>
+            <li>Click an event to see it on your Google Calendar</li>
           </ul>
         </div>
         <div className='demo-app-sidebar-section'>
@@ -120,7 +121,7 @@ class Calendar extends React.Component {
 function renderEventContent(eventInfo) {
   return (
     <>
-      <b>{eventInfo.timeText}</b>
+      <b>{eventInfo.timeText}: </b>
       <i>{eventInfo.event.title}</i>
     </>
   )
