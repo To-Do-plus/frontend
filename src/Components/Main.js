@@ -12,13 +12,21 @@ class Main extends React.Component {
       <>
         <Container fluid>
           <Row>
-            <Col><h1>Your To Do List! </h1></Col>
+            <Col justify-content-md-center><h1>Your To Do List! </h1></Col>
           </Row>
           <Row>
             <Col md="auto">
-              <AddTDItem addToServer={this.props.addToServer} timeZone={this.props.timeZone} startDateTime={this.props.startDateTime} endDateTime={this.props.endDateTime}
-                handleStartDateTime={this.props.handleStartDateTime} handleEndDateTime={this.props.handleEndDateTime} 
-                calendarRef={this.props.calendarRef} />
+
+              <AddTDItem
+                addToServer={this.props.addToServer}
+                timeZone={this.props.timeZone}
+                 calendarRef={this.props.calendarRef}
+              // startDateTime={this.props.startDateTime} 
+              // endDateTime={this.props.endDateTime}
+              // handleStartDateTime={this.props.handleStartDateTime} 
+              // handleEndDateTime={this.props.handleEndDateTime} 
+              />
+
             </Col>
             <Col>
               <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} handleUpdate={this.props.handleUpdate} updateformHandler={this.props.updateformHandler}

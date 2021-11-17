@@ -99,7 +99,7 @@ class App extends React.Component {
   //     //   }
   //     //   this.state.toDoList.push(eachTask);
   //     //   return this.state.toDoList;
-        
+
   //     // })
   //     console.log(this.state.toDoList);
   //     console.log(this.state.timeZone);
@@ -136,8 +136,17 @@ class App extends React.Component {
       summary: event.summary,
       location: event.location,
       description: event.description,
-      start: event.start,
-      end: event.end
+      occupation: event.occupation,
+      start: {
+        dateTime: event.dateTime,
+        timeZone: event.timeZone,
+      },
+      end: {
+        dateTime: event.dateTime,
+        timeZone: event.timeZone,
+      },
+
+
     }
     let updatedTask = await axios.put(url, putObj);
     console.log(updatedTask);
@@ -197,10 +206,11 @@ class App extends React.Component {
                   addToServer={this.addToServer}
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
-                  startDateTime={this.state.startDateTime}
-                  endDateTime={this.state.endDateTime}
-                  handleEndDateTime={this.handleEndDateTime}
-                  handleStartDateTime={this.handleStartDateTime}
+
+                // startDateTime={this.state.startDateTime}
+                // endDateTime={this.state.endDateTime}
+                // handleEndDateTime={this.handleEndDateTime}
+                // handleStartDateTime={this.handleStartDateTime}
                   updateformHandler={this.updateformHandler}
                   closeUpdate={this.closeUpdate}
                   updatedObj={this.state.updatedObj}
@@ -208,6 +218,7 @@ class App extends React.Component {
                   googleState={this.state.google}
                   calendarRef={this.state.calendarRef}
                   updateCalendarRef={this.updateCalendarRef}
+
                 /> : ""}
             </Route>
             <Route exact path="/aboutme">
