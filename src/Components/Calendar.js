@@ -133,4 +133,17 @@ function renderSidebarEvent(event) {
     )
 }
 
+// let initializeCalendar = () => {
+//   if (this.props.toDoList) {
+//     this.props.toDoList.forEach((element) => {
+//       calendarRef.addEvent({
+//         id: element._id,
+//         title: element.summary,
+//         start: new Date(element.start.dateTime).toISOString(),
+//         end: new Date(element.end.dateTime).toISOString(),
+//       })
+//     })
+//   }
+// }
+
 export default Calendar;
