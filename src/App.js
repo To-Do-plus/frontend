@@ -25,7 +25,10 @@ class App extends React.Component {
       timeZone: '',
       startDateTime: Date(),
       endDateTime: Date(),
-      toDoList: []
+      toDoList: [],
+      showUpdate: false,
+      updateForm: false,
+      updatedObj:{}
     }
   }
 
@@ -53,6 +56,20 @@ class App extends React.Component {
     this.setState({ google: [] })
   }
 
+  updateformHandler = (itemObj) => {
+    this.setState({
+      showUpdate: true,
+      updateForm: true,
+      updatedObj: itemObj,
+    })
+    console.log(itemObj);
+  }
+
+  closeUpdate = () => {
+    this.setState({
+      showUpdate: false,
+    })
+  }
 
   // getEventsAPI = async () => {
   //   // This function here is pulling things fromt he API NOT the server
@@ -106,7 +123,7 @@ class App extends React.Component {
   }
 
   handleUpdate = async (event) => {
-    let url = `${process.env.REACT_APP_API}/events/${event._id}`;
+    let url = `http://localhost:3001/events/${event._id}`;
 
     let putObj = {
       summary: event.summary,
@@ -121,8 +138,11 @@ class App extends React.Component {
         dateTime: event.dateTime,
         timeZone: event.timeZone,
       },
+
+
     }
-    await axios.put(url, putObj);
+    let updatedTask = await axios.put(url, putObj);
+    console.log(updatedTask);
     // let updatedData = updatedEvent.data;
     // let copyState = this.state.thDoList.map((event, idx) => {
     //   if(event._id === updatedData._id) return updatedData;
@@ -135,7 +155,8 @@ class App extends React.Component {
   }
 
   deleteFromServer = async (passedId) => {
-    let deletedEvent = await axios.delete(`${process.env.REACT_APP_API}/events/${passedId}`);
+    console.log('click');
+    let deletedEvent = await axios.delete(`http://localhost:3001/events/${passedId}`);
     console.log(passedId);
     let deletedEventData = deletedEvent.data
     console.log(deletedEventData);
@@ -173,10 +194,16 @@ class App extends React.Component {
                   addToServer={this.addToServer}
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
+
                 // startDateTime={this.state.startDateTime}
                 // endDateTime={this.state.endDateTime}
                 // handleEndDateTime={this.handleEndDateTime}
                 // handleStartDateTime={this.handleStartDateTime}
+                  updateformHandler={this.updateformHandler}
+                  closeUpdate={this.closeUpdate}
+                  updatedObj={this.state.updatedObj}
+                  showUpdate={this.state.showUpdate}
+
                 /> : ""}
               {this.state.google.name ? <Calendar googleState={this.state.google} /> : <Image fluid src={ToDoPlus} />}
 

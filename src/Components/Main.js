@@ -25,7 +25,10 @@ class Main extends React.Component {
               />
             </Col>
             <Col>
-              <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} handleUpdate={this.props.handleUpdate} />
+              <TDItems toDoList={this.props.toDoList} deleteToDo={this.props.deleteToDo} handleUpdate={this.props.handleUpdate} updateformHandler={this.props.updateformHandler}
+                  closeUpdate={this.props.closeUpdate}
+                  updatedObj={this.props.updatedObj}
+                  showUpdate={this.props.showUpdate} />
             </Col>
             <Col style={{ width: '20rem' }}>
               <Starburst toDoList={this.props.toDoList} />

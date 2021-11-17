@@ -1,9 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import UpdateTask from './UpdateTask';
 
 
 class TDItems extends React.Component {
+
+  
+
+  runUpdateForm = (item) => {
+    this.props.updateformHandler(item);
+    console.log(this.props.showUpdate);
+  }
 
   render() {
 
@@ -12,6 +20,7 @@ class TDItems extends React.Component {
       <section>
 
         <h2>Things on your List:</h2>
+         <UpdateTask showUpdate={this.props.showUpdate} closeUpdate={this.props.closeUpdate} handleUpdate={this.props.handleUpdate} updatedObj={this.props.updatedObj}/>
         {this.props.toDoList ?
           this.props.toDoList.map((tDThing) =>
             <Card border="primary" style={{ width: '30rem' }} key={tDThing._id}>
@@ -26,7 +35,7 @@ class TDItems extends React.Component {
                 </Card.Text>
                 <Button variant="success" onClick={() => { this.props.deleteToDo(tDThing._id) }}>Done!</Button>
 
-                <Button variant="secondary" onClick={() => { this.props.handleUpdate(tDThing._id) }}>Edit</Button>
+                <Button variant="secondary" onClick={() => { this.runUpdateForm(tDThing) }}>Edit</Button>
 
                 {/* <Button variant="primary" onClick={() => { this.props.ADDTOCALENDARFUNCTION(tDThing._id) }}>Add To Calendar</Button> */}
               </Card.Body>
