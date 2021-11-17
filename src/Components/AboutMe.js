@@ -24,7 +24,7 @@ class AboutMe extends React.Component {
                 <div>
                   <h5 >Chris Rarig</h5>
                   <p className="text-center">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                  I am a Software Engineer with a Business Analytics background. After experiencing the problem-solving capabilities of Python coding through my work at Zillow I decided on a career change. That brought me here to Code Fellows. During my time at Code Fellows, I plan to learn the methods and capabilities of Python. After graduating I hope to begin a career in Software Engineering working in a fast-paced environment where I am constantly being challenged and learning from my peers.
                   </p>
                 </div>
               </div>

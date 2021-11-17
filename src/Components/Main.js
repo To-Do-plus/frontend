@@ -11,9 +11,11 @@ class Main extends React.Component {
     return (
       <>
         <Container fluid>
-          <Row>
+          {/* <Row>
             <Col justify-content-md-center><h1>Your To Do List! </h1></Col>
-          </Row>
+          </Row> */}
+          <br></br>
+          <br></br>
           <Row>
             <Col md="auto">
 
@@ -37,7 +39,7 @@ class Main extends React.Component {
                   calendarRef={this.props.calendarRef}/>
             </Col>
             <Col style={{ width: '20rem' }}>
-              <Starburst toDoList={this.props.toDoList} />
+              <Starburst toDoList={this.props.toDoList} getEventsServer={this.props.getEventsServer}/>
             </Col>
           </Row>
         </Container>
@@ -46,6 +48,7 @@ class Main extends React.Component {
         showUpdate={this.props.showUpdate} updatedObj={this.props.updatedObj}
         closeUpdate={this.props.closeUpdate}
         updateCalendarRef={this.props.updateCalendarRef}
+        calendarRef={this.props.calendarRef}
         addToServer={this.props.addToServer}
         toDoList={this.props.toDoList} />
       </>

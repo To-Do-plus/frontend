@@ -27,9 +27,9 @@ class TDItems extends React.Component {
                 <Card.Text>
                   <p>Details: {tDThing.description} </p>
 
-//                   <p>Location: {tDThing.location}</p>
-//                   <p>Start Time: {tDThing.start ? tDThing.start.dateTime : 'N/A'} </p>
-//                   <p>End Time: {tDThing.end ? tDThing.end.dateTime : 'N/A'}</p>
+                   {/* <p>Location: {tDThing.location}</p>
+                   <p>Start Time: {tDThing.start ? tDThing.start.dateTime : 'N/A'} </p>
+                   <p>End Time: {tDThing.end ? tDThing.end.dateTime : 'N/A'}</p> */}
 
                   {/* <p>Location: {tDThing.location}</p> */}
                   {/* <p>Start Time: {tDThing.start.dateTime} </p>
