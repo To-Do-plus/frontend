@@ -77,7 +77,8 @@ class UpdateTask extends React.Component {
   render() {
     return(
       <>
-      <Modal show={this.props.showUpdate}>
+      <Modal show={this.props.showUpdate} onHide={this.props.closeUpdate}>
+      <Modal.Header closeButton />
         <Modal.Dialog>
           <Modal.Body>
           <Form onSubmit={this.handleSubmit}>
