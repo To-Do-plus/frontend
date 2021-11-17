@@ -8,6 +8,7 @@ import Calendar from './Calendar';
 class Main extends React.Component {
 
   render() {
+    console.log(this.props);
     return (
       <>
         <Container fluid>
@@ -39,15 +40,16 @@ class Main extends React.Component {
                 calendarRef={this.props.calendarRef} />
             </Col>
             <Col style={{ width: '20rem' }}>
-              <Starburst
-                toDoList={this.props.toDoList}
-                getEventsServer={this.props.getEventsServer}
-                kitKat={this.props.kitKat}
-                twix={this.props.twix}
-                rolos={this.props.rolos}
-                localKitKat={this.props.localKitKat}
-                localTwix={this.props.localTwix}
-                localRolos={this.props.localRolos} />
+              {this.props.localRolos.length > 1 ?
+                <Starburst
+                  toDoList={this.props.toDoList}
+                  getEventsServer={this.props.getEventsServer}
+                  kitKat={this.props.kitKat}
+                  twix={this.props.twix}
+                  rolos={this.props.rolos}
+                  localKitKat={this.props.localKitKat}
+                  localTwix={this.props.localTwix}
+                  localRolos={this.props.localRolos} /> : ''}
             </Col>
           </Row>
         </Container>

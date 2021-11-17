@@ -5,13 +5,6 @@ import { Doughnut } from 'react-chartjs-2';
 // Proportion of time per tasks/total time goes into the second selector
 
 class Starburst extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
 
   everything = {
     labels: this.props.localKitKat,
@@ -73,7 +66,7 @@ class Starburst extends React.Component {
           <p className='inner'>The Inner Ring Shows How Many Hours OF Work You Have Ahead</p>
           <p className='outer'>The Outer Ring Shows How Your Tasks Compare to Your Time</p>
         </div>
-        {this.props.localRolos.length > 1 ? <Doughnut data={this.everything} /> : ""}
+        <Doughnut data={this.everything} />
       </>
 
     );
