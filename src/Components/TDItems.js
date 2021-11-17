@@ -16,12 +16,13 @@ class TDItems extends React.Component {
           this.props.toDoList.map((tDThing) =>
             <Card border="primary" style={{ width: '30rem' }} key={tDThing._id}>
               <Card.Body>
-                <Card.Title>{tDThing.summary}</Card.Title>
+                <Card.Title>{tDThing.summary}: {tDThing.occupado} minutes</Card.Title>
                 <Card.Text>
                   <p>Details: {tDThing.description} </p>
-                  <p>Location: {tDThing.location}</p>
-                  <p>Start Time: {tDThing.start.dateTime} </p>
-                  <p>End Time: {tDThing.end.dateTime}</p>
+                  {/* <p>Location: {tDThing.location}</p> */}
+                  {/* <p>Start Time: {tDThing.start.dateTime} </p>
+                  <p>End Time: {tDThing.end.dateTime}</p> */}
+
                 </Card.Text>
                 <Button variant="success" onClick={() => { this.props.deleteToDo(tDThing._id) }}>Done!</Button>
 

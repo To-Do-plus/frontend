@@ -16,9 +16,6 @@ import {
 import axios from 'axios';
 
 class App extends React.Component {
-
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -79,7 +76,7 @@ class App extends React.Component {
   //     //   }
   //     //   this.state.toDoList.push(eachTask);
   //     //   return this.state.toDoList;
-        
+
   //     // })
   //     console.log(this.state.toDoList);
   //     console.log(this.state.timeZone);
@@ -115,6 +112,7 @@ class App extends React.Component {
       summary: event.summary,
       location: event.location,
       description: event.description,
+      occupado: event.occupado,
       start: {
         dateTime: event.dateTime,
         timeZone: event.timeZone,
@@ -175,10 +173,10 @@ class App extends React.Component {
                   addToServer={this.addToServer}
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
-                  startDateTime={this.state.startDateTime}
-                  endDateTime={this.state.endDateTime}
-                  handleEndDateTime={this.handleEndDateTime}
-                  handleStartDateTime={this.handleStartDateTime}
+                // startDateTime={this.state.startDateTime}
+                // endDateTime={this.state.endDateTime}
+                // handleEndDateTime={this.handleEndDateTime}
+                // handleStartDateTime={this.handleStartDateTime}
                 /> : ""}
               {this.state.google.name ? <Calendar googleState={this.state.google} /> : <Image fluid src={ToDoPlus} />}
 

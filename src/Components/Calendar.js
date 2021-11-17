@@ -7,14 +7,14 @@ import { formatDate } from '@fullcalendar/react';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 
 class Calendar extends React.Component {
-  
+
   state = {
     weekendsVisible: true,
     currentEvents: [],
   }
 
   calendar = {
-    plugins: [ googleCalendarPlugin ],
+    plugins: [googleCalendarPlugin],
     googleCalendarApiKey: 'AIzaSyCV81aGBz0ZSJjUpP1k7R8UvwQrt7sSqxk', // Console API_KEY here
     events: {
       googleCalendarId: this.props.googleState.email,
@@ -47,11 +47,11 @@ class Calendar extends React.Component {
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
             themeSystem='standard'
-            /* you can update a remote database when these fire:
-            eventAdd={function(){}}
-            eventChange={function(){}}
-            eventRemove={function(){}}
-            */
+          /* you can update a remote database when these fire:
+          eventAdd={function(){}}
+          eventChange={function(){}}
+          eventRemove={function(){}}
+          */
           />
         </div>
       </div>
@@ -129,7 +129,7 @@ function renderEventContent(eventInfo) {
 function renderSidebarEvent(event) {
   return (
     <li key={event.id}>
-      <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
+      <b>{formatDate(event.start, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
       <i>{event.title}</i>
     </li>
   )
