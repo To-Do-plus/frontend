@@ -18,11 +18,11 @@ class UpdateTask extends React.Component {
       description: (event.target.description.value)? event.target.description.value : this.props.updatedObj.description,
       start: this.props.updatedObj._id ? this.props.updatedObj.start : {
         dateTime: new Date(this.props.updatedObj.start),
-        timeZone: 'UTC',
+        timeZone: 'local',
       },
       end: this.props.updatedObj._id  ? this.props.updatedObj.end : {
         dateTime: new Date(this.props.updatedObj.end),
-        timeZone: 'UTC',
+        timeZone: 'local',
       },
       allDay: !!this.props.updatedObj.allDay,
       _id: this.props.updatedObj._id

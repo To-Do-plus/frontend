@@ -18,7 +18,7 @@ class AddTDItem extends React.Component {
   //   const endTime = e.target.endTime.value;
   // }
 
-  handleSubmit = async  (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     let newTask = {
       summary: (e.target.summary.value),

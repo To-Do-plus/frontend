@@ -72,7 +72,6 @@ class Calendar extends React.Component {
           />
         </div>
         <UpdateTask showUpdate={this.props.showUpdate} closeUpdate={this.props.closeUpdate} handleUpdate={this.props.handleUpdate} updatedObj={this.props.updatedObj} addToServer={this.props.addToServer} calendarRef={this.calendarRef}/>
-        {/* {this.props.toDoList ? this.initializeEvents() : ''} */}
       </div>
     )
   }
@@ -115,16 +114,7 @@ class Calendar extends React.Component {
       currentEvents: events
     })
   }
-
-  // initializeDB = () => {
-  //   this.props.toDoList ? this.props.toDoList.forEach((element) {
-  //     this.calendarRef.addEvent((element) => {
-  //       id:
-  //     }
-  // }
-
 }
-
 function renderEventContent(eventInfo) {
   return (
     <>
@@ -140,7 +130,7 @@ function renderSidebarEvent(event) {
       <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
       <i>{event.title}</i>
     </li>
-  )
+    )
 }
 
 export default Calendar;
