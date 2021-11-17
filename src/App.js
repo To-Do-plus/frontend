@@ -1,5 +1,4 @@
 import React from 'react';
-import Calendar from './Components/Calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -15,6 +14,7 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,8 +29,20 @@ class App extends React.Component {
       showUpdate: false,
       updateForm: false,
       updatedObj:{},
-      calendarRef: null
+      calendarRef: null,
+      donut: {},
+      key: Date.now(),
     }
+  }
+
+  chartReference = {};
+
+  ref = (reference) => {
+    this.chartReference = reference;
+  }
+
+  refreshFn = () => {
+    this.forceUpdate();
   }
 
   handleStartDateTime = (date) => {
@@ -70,6 +82,7 @@ class App extends React.Component {
     this.setState({
       showUpdate: false,
     })
+    this.forceUpdate();
   }
 
   updateCalendarRef = (ref) => {
@@ -126,6 +139,7 @@ class App extends React.Component {
     // this.getEventsAPI();
     this.getEventsServer();
     console.log('newTask', newTask.data);
+    this.forceUpdate();
     return newTask.data;
   }
 
@@ -218,6 +232,10 @@ class App extends React.Component {
                   googleState={this.state.google}
                   calendarRef={this.state.calendarRef}
                   updateCalendarRef={this.updateCalendarRef}
+                  refreshFn={this.refreshFn}
+                  donut={this.state.donut}
+                  ref={this.ref}
+                  key={this.state.key}
 
                 /> : ""}
                  {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}

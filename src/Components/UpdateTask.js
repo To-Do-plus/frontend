@@ -68,7 +68,6 @@ class UpdateTask extends React.Component {
     console.log(newObj);    
     this.props.closeUpdate();
 
-    
 
     
     
@@ -77,7 +76,8 @@ class UpdateTask extends React.Component {
   render() {
     return(
       <>
-      <Modal show={this.props.showUpdate}>
+      <Modal show={this.props.showUpdate} onHide={this.props.closeUpdate}>
+      <Modal.Header closeButton />
         <Modal.Dialog>
           <Modal.Body>
           <Form onSubmit={this.handleSubmit}>
@@ -93,12 +93,11 @@ class UpdateTask extends React.Component {
               <Form.Label>How Many Minutes will this task take?</Form.Label>
               <Form.Control placeholder="IN MINUTES!" id="time" input type="text" pattern="[0-9]*" onInput={this.handleNumber.bind(this)} value={this.state.busyTime} />
               </Form.Group>
-
               <Button variant="primary" type="submit">Submit</Button>
             </Form>
           </Modal.Body>
         </Modal.Dialog>
-        </Modal>
+      </Modal>
       </>
     )
   }

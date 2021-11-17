@@ -36,10 +36,11 @@ class Main extends React.Component {
                   updatedObj={this.props.updatedObj}
                   showUpdate={this.props.showUpdate}
                   addToServer={this.props.addToServer}
-                  calendarRef={this.props.calendarRef}/>
+                  calendarRef={this.props.calendarRef}
+              />
             </Col>
             <Col style={{ width: '20rem' }}>
-              <Starburst toDoList={this.props.toDoList} getEventsServer={this.props.getEventsServer}/>
+              <Starburst toDoList={this.props.toDoList} getEventsServer={this.props.getEventsServer} updateFormHandler={this.props.updateFormHandler} refreshFn={this.props.refreshFn} addtoServer={this.props.addToServer} donut={this.props.donut} ref={this.props.ref} key={this.props.key} />
             </Col>
           </Row>
         </Container>

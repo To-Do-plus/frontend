@@ -1,10 +1,13 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import Button from 'react-bootstrap/Button';
+
 // TO DO:
 // Total Time/60 Minutes = How many data elements. Populate this table with 1's
 // Proportion of time per tasks/total time goes into the second selector
 
 class Starburst extends React.Component {
+
 
   kitKat = () => {
     const array = this.props.toDoList.map((tDThing) => tDThing.summary);
@@ -44,6 +47,20 @@ class Starburst extends React.Component {
       progress.push(1);
     }
     return progress;
+  }
+
+  wrapperFn = () => {
+    this.kitKat();
+    this.rolos();
+    this.twix();
+  }
+
+  force = () => {
+    this.props.refreshFn();
+  }
+
+  setDonut = (everything) => {
+    this.setState({ donut: everything });
   }
 
 
@@ -97,6 +114,24 @@ class Starburst extends React.Component {
     
   };
 
+  newObj = (obj, kit, rolo, twix) => {
+    obj.labels = () => kit();
+    obj.datasets[0].data = () => rolo();
+    obj.datasets[1].data = () => twix();
+    return obj;
+  }
+
+  newObj2 = (obj, kit, rolo, twix) => {
+    obj.labels = kit();
+    obj.datasets[0].data = rolo();
+    obj.datasets[1].data = twix();
+    return obj;
+  }
+
+  keyMeth = () => {
+    this.setState({ key: Date.now() });
+  }
+
   render() {
     return (
       <>
@@ -105,10 +140,14 @@ class Starburst extends React.Component {
           <p className='inner'>The Inner Ring Shows How Many Hours OF Work You Have Ahead</p>
           <p className='outer'>The Outer Ring Shows How Your Tasks Compare to Your Time</p>
         </div>
-        <Doughnut data={this.everything} />
+        <Doughnut data={this.newObj2(this.everything, this.kitKat, this.rolos, this.twix)} />
+        <Button onClick={() => {this.force()}}>Force Update!</Button>
+        <Button onClick={() => {this.setDonut(this.everything)}}>New Donut</Button>
+        <Button onClick={() => {this.keyMeth()}}>Key Method</Button>
+        <Button onClick={() => {this.newObj2(this.everything, this.kitKat, this.rolos, this.twix)}}>new Object</Button>
       </>
-
     );
   }
 }
 export default Starburst;
+
