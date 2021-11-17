@@ -39,7 +39,10 @@ class Main extends React.Component {
                   calendarRef={this.props.calendarRef}/>
             </Col>
             <Col style={{ width: '20rem' }}>
-              <Starburst toDoList={this.props.toDoList} getEventsServer={this.props.getEventsServer}/>
+              <Starburst toDoList={this.props.toDoList} getEventsServer={this.props.getEventsServer} obj={this.props.obj} 
+                data1={this.props.data1}
+                data2={this.props.data2}
+                label={this.props.label}/>
             </Col>
           </Row>
         </Container>

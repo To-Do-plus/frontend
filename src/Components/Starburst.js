@@ -1,11 +1,13 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+
 // TO DO:
 // Total Time/60 Minutes = How many data elements. Populate this table with 1's
 // Proportion of time per tasks/total time goes into the second selector
 
 class Starburst extends React.Component {
 
+ 
   kitKat = () => {
     const array = this.props.toDoList.map((tDThing) => tDThing.summary);
     array.push('Free Time!');
@@ -14,7 +16,6 @@ class Starburst extends React.Component {
 
   rolos = () => {
     const array = this.props.toDoList.map((tDThing) => tDThing.occupation);
-
     let minutos = 0;
 
     for (let i = 0; i < array.length; i++) {
@@ -46,9 +47,7 @@ class Starburst extends React.Component {
     return progress;
   }
 
-
   everything = {
-    // labels: this.props.toDoList.map((tDThing) => tDThing.summary),
     labels: this.kitKat(),
     datasets: [
       {
@@ -98,6 +97,39 @@ class Starburst extends React.Component {
     
   };
 
+ 
+  newObj = (obj) => {
+    obj.labels = ['a', 'b', 'c']
+    obj.labels = this.props.label;
+    obj.datasets[0].data = this.props.data1;
+    obj.datasets[1].data = this.props.data2;
+    return obj;
+  }
+
+  
+  
+  setAllState = ((kit, rolo, twix) => {
+    this.setState(() => {
+      return {label: kit}
+    })
+    this.setState(() => {
+      return {data1: rolo}
+    })
+    this.setState(() => {
+      return {data2: twix}
+    })
+  })
+
+  start = Date.now();
+
+   componentDidUpdate() {
+    if ((Date.now() - this.start) >= 15000) {
+      this.setAllState(this.kitKat, this.rolos, this.twix);
+    }
+  }
+
+
+// only 1 doughnut chart works at a time
   render() {
     return (
       <>
@@ -106,7 +138,8 @@ class Starburst extends React.Component {
           <p className='inner'>The Inner Ring Shows How Many Hours OF Work You Have Ahead</p>
           <p className='outer'>The Outer Ring Shows How Your Tasks Compare to Your Time</p>
         </div>
-        <Doughnut data={this.everything} />
+        {/* <Doughnut data={this.everything} /> */}
+        <Doughnut data={this.newObj(this.everything)} />
       </>
 
     );

@@ -29,7 +29,17 @@ class App extends React.Component {
       showUpdate: false,
       updateForm: false,
       updatedObj:{},
-      calendarRef: null
+      calendarRef: null,
+      data1: [],
+      data2: [],
+      label: [],
+      obj: {
+        labels: [],
+        datasets: [
+          {data: []},
+          {data: []}
+        ]
+      },
     }
   }
 
@@ -218,6 +228,10 @@ class App extends React.Component {
                   googleState={this.state.google}
                   calendarRef={this.state.calendarRef}
                   updateCalendarRef={this.updateCalendarRef}
+                  obj={this.state.obj}
+                  data1={this.state.data1}
+                  data2={this.state.data2}
+                  label={this.state.label}
 
                 /> : ""}
                  {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
