@@ -28,8 +28,11 @@ class App extends React.Component {
       toDoList: [],
       showUpdate: false,
       updateForm: false,
-      updatedObj:{},
-      calendarRef: null
+      updatedObj: {},
+      calendarRef: null,
+      localKitKat: [],
+      localRolos: [],
+      localTwix: []
     }
   }
 
@@ -75,8 +78,8 @@ class App extends React.Component {
   updateCalendarRef = (ref) => {
     this.setState({
       calendarRef: ref
-   });
- }
+    });
+  }
   // getEventsAPI = async () => {
   //   // This function here is pulling things fromt he API NOT the server
   //   let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -109,6 +112,56 @@ class App extends React.Component {
   //   }
   // }
 
+  kitKat = () => {
+    const array = this.state.toDoList.map((tDThing) => tDThing.summary);
+    array.push('Free Time!');
+    this.setState({
+      localKitKat: array,
+    })
+    return array;
+  }
+
+  rolos = () => {
+    const array = this.state.toDoList.map((tDThing) => tDThing.occupation);
+    console.log(array);
+    let minutos = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      minutos += array[i];
+    }
+
+    let remainder = 60 - (minutos % 60);
+
+    array.push(remainder);
+    console.log(remainder);
+    this.setState({
+      localRolos: array,
+    })
+    return array;
+  }
+
+  twix = () => {
+    const array = this.state.toDoList.map((tDThing) => tDThing.occupation);
+
+    let minutos = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      minutos += array[i];
+    }
+
+    let horas = Math.ceil(minutos / 60);
+
+    let progress = [];
+    for (let i = 0; i < horas; i++) {
+      progress.push(1);
+    }
+    this.setState({
+      localTwix: array,
+    })
+    return progress;
+  }
+
+
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
     let url = `http://localhost:3001/events`;
@@ -125,6 +178,8 @@ class App extends React.Component {
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
     // this.getEventsAPI();
     this.getEventsServer();
+    this.rolos();
+    this.twix();
     console.log('newTask', newTask.data);
     return newTask.data;
   }
@@ -159,6 +214,8 @@ class App extends React.Component {
     //   toDoList: copyState
     // })
     this.getEventsServer();
+    this.rolos();
+    this.twix();
   }
 
   deleteFromServer = async (passedId) => {
@@ -177,11 +234,17 @@ class App extends React.Component {
     if (event) {
       event.remove();
     }
+    this.rolos();
+    this.twix();
   }
 
-  componentDidMount() {
+
+  async componentDidMount() {
     // this.getEventsAPI();
-    this.getEventsServer();
+    await this.getEventsServer();
+    this.rolos();
+    this.twix();
+    this.kitKat();
   }
 
   render() {
@@ -207,10 +270,6 @@ class App extends React.Component {
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
                   getEventsServer={this.getEventsServer}
-                // startDateTime={this.state.startDateTime}
-                // endDateTime={this.state.endDateTime}
-                // handleEndDateTime={this.handleEndDateTime}
-                // handleStartDateTime={this.handleStartDateTime}
                   updateformHandler={this.updateformHandler}
                   closeUpdate={this.closeUpdate}
                   updatedObj={this.state.updatedObj}
@@ -218,9 +277,18 @@ class App extends React.Component {
                   googleState={this.state.google}
                   calendarRef={this.state.calendarRef}
                   updateCalendarRef={this.updateCalendarRef}
-
+                  kitKat={this.kitKat}
+                  twix={this.twix}
+                  rolos={this.rolos}
+                  localKitKat={this.state.localKitKat}
+                  localTwix={this.state.localTwix}
+                  localRolos={this.state.localRolos}
+                // startDateTime={this.state.startDateTime}
+                // endDateTime={this.state.endDateTime}
+                // handleEndDateTime={this.handleEndDateTime}
+                // handleStartDateTime={this.handleStartDateTime}
                 /> : ""}
-                 {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
+              {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

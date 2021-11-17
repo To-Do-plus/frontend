@@ -21,13 +21,13 @@ class UpdateTask extends React.Component {
     event.preventDefault();
     console.log('click');
 
-  
+
     let calendarApi = this.props.calendarRef.current.getApi();
-    
+
     let newObj = {
       summary: (event.target.summary.value) ? event.target.summary.value : this.props.updatedObj.summary,
       // location: (event.target.location.value)? event.target.location.value : this.props.updatedObj.location,
-      description: (event.target.description.value)? event.target.description.value : this.props.updatedObj.description,
+      description: (event.target.description.value) ? event.target.description.value : this.props.updatedObj.description,
       // start: this.props.updatedObj._id ? this.props.updatedObj.start : {
       //   dateTime: new Date(this.props.updatedObj.start),
       //   timeZone: 'UTC',
@@ -37,19 +37,19 @@ class UpdateTask extends React.Component {
       //   timeZone: 'UTC',
       // },
       // allDay: !!this.props.updatedObj.allDay,
-      occupation: (event.target.time.value)? event.target.time.value : this.props.updatedObj.occupation,
+      occupation: (event.target.time.value) ? event.target.time.value : this.props.updatedObj.occupation,
       _id: this.props.updatedObj._id
-    } 
+    }
 
     // if it's from the calendar, then add to server rather than update
-    if (newObj._id) { 
-      this.props.handleUpdate(newObj) 
+    if (newObj._id) {
+      this.props.handleUpdate(newObj)
       let event = calendarApi.getEventById(newObj._id);
       if (event) {
         event.setProp('title', newObj.summary);
       }
     } else {
-      const newTask =  await this.props.addToServer(newObj) 
+      const newTask = await this.props.addToServer(newObj)
       newObj._id = newTask._id;
       calendarApi.unselect() // clear date selection
 
@@ -62,42 +62,42 @@ class UpdateTask extends React.Component {
         occupation: newObj.occupation
       });
     }
-    
-    
-      
-    console.log(newObj);    
+
+
+
+    console.log(newObj);
     this.props.closeUpdate();
 
-    
 
-    
-    
+
+
+
   }
 
   render() {
-    return(
+    return (
       <>
-      <Modal show={this.props.showUpdate}>
-        <Modal.Dialog>
-          <Modal.Body>
-          <Form onSubmit={this.handleSubmit}>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Update Task Summary</Form.Label>
-                <Form.Control type="text" defaultValue={this.props.updatedObj.summary} id="summary" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Update Task Description</Form.Label>
-                <Form.Control as="textarea" rows={3} id="description" defaultValue={this.props.updatedObj.description}  />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-              <Form.Label>How Many Minutes will this task take?</Form.Label>
-              <Form.Control placeholder="IN MINUTES!" id="time" input type="text" pattern="[0-9]*" onInput={this.handleNumber.bind(this)} value={this.state.busyTime} />
-              </Form.Group>
+        <Modal show={this.props.showUpdate}>
+          <Modal.Dialog>
+            <Modal.Body>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Add Task Summary</Form.Label>
+                  <Form.Control type="text" defaultValue={this.props.updatedObj.summary} id="summary" />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Add Task Description</Form.Label>
+                  <Form.Control as="textarea" rows={3} id="description" defaultValue={this.props.updatedObj.description} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>How Many Minutes will this task take?</Form.Label>
+                  <Form.Control placeholder="IN MINUTES!" id="time" input type="text" pattern="[0-9]*" onInput={this.handleNumber.bind(this)} value={this.state.busyTime} />
+                </Form.Group>
 
-              <Button variant="primary" type="submit">Submit</Button>
-            </Form>
-          </Modal.Body>
-        </Modal.Dialog>
+                <Button variant="primary" type="submit">Submit</Button>
+              </Form>
+            </Modal.Body>
+          </Modal.Dialog>
         </Modal>
       </>
     )
