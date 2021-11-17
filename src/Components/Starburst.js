@@ -13,7 +13,7 @@ class Starburst extends React.Component {
   }
 
   rolos = () => {
-    const array = this.props.toDoList.map((tDThing) => tDThing.occupado);
+    const array = this.props.toDoList.map((tDThing) => tDThing.occupation);
 
     let minutos = 0;
 
@@ -29,7 +29,7 @@ class Starburst extends React.Component {
   }
 
   twix = () => {
-    const array = this.props.toDoList.map((tDThing) => tDThing.occupado);
+    const array = this.props.toDoList.map((tDThing) => tDThing.occupation);
 
     let minutos = 0;
 

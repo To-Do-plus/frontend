@@ -112,7 +112,7 @@ class App extends React.Component {
       summary: event.summary,
       location: event.location,
       description: event.description,
-      occupado: event.occupado,
+      occupation: event.occupation,
       start: {
         dateTime: event.dateTime,
         timeZone: event.timeZone,

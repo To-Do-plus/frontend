@@ -34,7 +34,7 @@ class AddTDItem extends React.Component {
       summary: (e.target.summary.value),
       // location: (e.target.location.value),
       description: (e.target.description.value),
-      occupado: (this.state.busyTime),
+      occupation: (this.state.busyTime),
       start: {
         dateTime: this.props.startDateTime,
         timeZone: this.props.timeZone,
