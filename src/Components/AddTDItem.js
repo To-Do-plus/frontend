@@ -35,14 +35,14 @@ class AddTDItem extends React.Component {
       // location: (e.target.location.value),
       description: (e.target.description.value),
       occupation: (this.state.busyTime),
-      start: {
-        dateTime: this.props.startDateTime,
-        timeZone: this.props.timeZone,
-      },
-      end: {
-        dateTime: this.props.endDateTime.toString(),
-        timeZone: this.props.timeZone,
-      },
+      // start: {
+      //   dateTime: this.props.startDateTime,
+      //   timeZone: this.props.timeZone,
+      // },
+      // end: {
+      //   dateTime: this.props.endDateTime.toString(),
+      //   timeZone: this.props.timeZone,
+      // },
     }
     const newTaskData = await this.props.addToServer(newTask)
     
@@ -50,8 +50,8 @@ class AddTDItem extends React.Component {
     calendarApi.addEvent({
       id: newTaskData._id,
       title: newTask.summary,
-      start: new Date(newTask.start.dateTime).toISOString(),
-      end: new Date(newTask.end.dateTime).toISOString(),
+      // start: new Date(newTask.start.dateTime).toISOString(),
+      // end: new Date(newTask.end.dateTime).toISOString(),
       allDay: false
     });
   }
@@ -59,6 +59,7 @@ class AddTDItem extends React.Component {
   render() {
     // onChange={this.handleChange}
     return (
+      
       <Form onSubmit={this.handleSubmit}>
         <Card style={{ width: '21rem' }}>
           <Card.Header>What's On Your List?</Card.Header>

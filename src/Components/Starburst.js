@@ -94,6 +94,7 @@ class Starburst extends React.Component {
         borderWidth: 1,
       },
     ],
+    
   };
 
   render() {

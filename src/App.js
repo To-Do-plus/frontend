@@ -206,7 +206,7 @@ class App extends React.Component {
                   addToServer={this.addToServer}
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
-
+                  getEventsServer={this.getEventsServer}
                 // startDateTime={this.state.startDateTime}
                 // endDateTime={this.state.endDateTime}
                 // handleEndDateTime={this.handleEndDateTime}
@@ -220,6 +220,7 @@ class App extends React.Component {
                   updateCalendarRef={this.updateCalendarRef}
 
                 /> : ""}
+                 {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

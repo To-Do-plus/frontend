@@ -85,6 +85,7 @@ class Calendar extends React.Component {
         <div className='demo-app-sidebar-section'>
           <h2>Instructions</h2>
           <ul>
+            <li>Make your personal calendar public: <a href='https://support.google.com/calendar/answer/37083?hl=en'>Click Here!</a></li>
             <li>Select dates and you will be prompted to create a new event</li>
             <li>Drag, drop, and resize events</li>
             <li>Click an event to see it on your Google Calendar</li>
