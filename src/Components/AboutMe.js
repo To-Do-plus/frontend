@@ -56,7 +56,7 @@ class AboutMe extends React.Component {
                 <div >
                   <h5>Anthony Turinski</h5>
                   <p className="text-center">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    Anthony is an aspiring Software Developer with a background in odd jobs. He believes the ultimate goal of technology should be to reduce humanity’s collective burden. Just like how the refrigerator solved food spoilage and the washing machine freed up hours of scrubbing, he wants to build programs that free people from their chains of labor.
                   </p>
                 </div>
               </div>

@@ -5,25 +5,60 @@ import Modal from "react-bootstrap/Modal";
 
 class UpdateTask extends React.Component {
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     console.log('click');
-    
-    let newObj = {
-        summary: (event.target.summary.value)? event.target.summary.value : this.props.updatedObj.summary,
-        location: (event.target.location.value)? event.target.location.value : this.props.updatedObj.location,
-        description: (event.target.description.value)? event.target.description.value : this.props.updatedObj.description,
-        start: this.props.updatedObj.start,
-        end: this.props.updatedObj.end,
-        _id: this.props.updatedObj._id
-      }
-      console.log(newObj);    
-      this.props.closeUpdate();
-    this.props.handleUpdate(newObj);
-    
-  }
 
   
+    let calendarApi = this.props.calendarRef.current.getApi();
+    
+    let newObj = {
+      summary: (event.target.summary.value) ? event.target.summary.value : this.props.updatedObj.summary,
+      location: (event.target.location.value)? event.target.location.value : this.props.updatedObj.location,
+      description: (event.target.description.value)? event.target.description.value : this.props.updatedObj.description,
+      start: this.props.updatedObj._id ? this.props.updatedObj.start : {
+        dateTime: new Date(this.props.updatedObj.start),
+        timeZone: 'UTC',
+      },
+      end: this.props.updatedObj._id  ? this.props.updatedObj.end : {
+        dateTime: new Date(this.props.updatedObj.end),
+        timeZone: 'UTC',
+      },
+      allDay: !!this.props.updatedObj.allDay,
+      _id: this.props.updatedObj._id
+    } 
+
+    // if it's from the calendar, then add to server rather than update
+    if (newObj._id) { 
+      this.props.handleUpdate(newObj) 
+      let event = calendarApi.getEventById(newObj._id);
+      if (event) {
+        event.setProp('title', newObj.summary);
+      }
+    } else {
+      const newTask =  await this.props.addToServer(newObj) 
+      newObj._id = newTask._id;
+      calendarApi.unselect() // clear date selection
+
+      calendarApi.addEvent({
+        id: newObj._id,
+        title: newObj.summary,
+        start: new Date(newObj.start.dateTime).toISOString(),
+        end: new Date(newObj.end.dateTime).toISOString(),
+        allDay: !!newObj.allDay
+      });
+    }
+    
+    
+      
+    console.log(newObj);    
+    this.props.closeUpdate();
+
+    
+
+    
+    
+  }
 
   render() {
     return(
@@ -31,7 +66,7 @@ class UpdateTask extends React.Component {
       <Modal show={this.props.showUpdate}>
         <Modal.Dialog>
           <Modal.Body>
-            <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
               <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Update Task Summary</Form.Label>
                 <Form.Control type="text" defaultValue={this.props.updatedObj.summary} id="summary" />

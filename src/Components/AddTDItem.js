@@ -28,7 +28,7 @@ class AddTDItem extends React.Component {
   //   const endTime = e.target.endTime.value;
   // }
 
-  handleSubmit = (e) => {
+  handleSubmit = async  (e) => {
     e.preventDefault();
     let newTask = {
       summary: (e.target.summary.value),
@@ -40,12 +40,20 @@ class AddTDItem extends React.Component {
         timeZone: this.props.timeZone,
       },
       end: {
-        dateTime: this.props.endDateTime,
+        dateTime: this.props.endDateTime.toString(),
         timeZone: this.props.timeZone,
       },
     }
-    this.props.addToServer(newTask)
-    console.log(newTask)
+    const newTaskData = await this.props.addToServer(newTask)
+    
+    let calendarApi = this.props.calendarRef.current.getApi();
+    calendarApi.addEvent({
+      id: newTaskData._id,
+      title: newTask.summary,
+      start: new Date(newTask.start.dateTime).toISOString(),
+      end: new Date(newTask.end.dateTime).toISOString(),
+      allDay: false
+    });
   }
 
   render() {

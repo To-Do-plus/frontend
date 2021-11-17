@@ -28,7 +28,8 @@ class App extends React.Component {
       toDoList: [],
       showUpdate: false,
       updateForm: false,
-      updatedObj:{}
+      updatedObj:{},
+      calendarRef: null
     }
   }
 
@@ -71,6 +72,11 @@ class App extends React.Component {
     })
   }
 
+  updateCalendarRef = (ref) => {
+    this.setState({
+      calendarRef: ref
+   });
+ }
   // getEventsAPI = async () => {
   //   // This function here is pulling things fromt he API NOT the server
   //   let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -120,6 +126,7 @@ class App extends React.Component {
     // this.getEventsAPI();
     this.getEventsServer();
     console.log('newTask', newTask.data);
+    return newTask.data;
   }
 
   handleUpdate = async (event) => {
@@ -165,6 +172,11 @@ class App extends React.Component {
     this.setState({ toDoList: filteredEvents });
     // this.getEventsAPI(); STRETCH GOAL TO DELETE OFF OF GOOGLE CALENDAR
     // this.getEventsServer();
+    let calendarApi = this.state.calendarRef.current.getApi();
+    let event = calendarApi.getEventById(passedId);
+    if (event) {
+      event.remove();
+    }
   }
 
   componentDidMount() {
@@ -203,10 +215,11 @@ class App extends React.Component {
                   closeUpdate={this.closeUpdate}
                   updatedObj={this.state.updatedObj}
                   showUpdate={this.state.showUpdate}
+                  googleState={this.state.google}
+                  calendarRef={this.state.calendarRef}
+                  updateCalendarRef={this.updateCalendarRef}
 
                 /> : ""}
-              {this.state.google.name ? <Calendar googleState={this.state.google} /> : <Image fluid src={ToDoPlus} />}
-
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />

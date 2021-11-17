@@ -5,6 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { formatDate } from '@fullcalendar/react';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import UpdateTask from './UpdateTask';
 
 class Calendar extends React.Component {
 
@@ -13,6 +14,8 @@ class Calendar extends React.Component {
     currentEvents: [],
   }
 
+  calendarRef = React.createRef();
+
   calendar = {
     plugins: [googleCalendarPlugin],
     googleCalendarApiKey: 'AIzaSyCV81aGBz0ZSJjUpP1k7R8UvwQrt7sSqxk', // Console API_KEY here
@@ -20,6 +23,18 @@ class Calendar extends React.Component {
       googleCalendarId: this.props.googleState.email,
       className: 'gcal-event' // an option!
     }
+  }
+
+  constructor(props) {
+    super(props);
+    this.props.updateCalendarRef(this.calendarRef);
+  }
+
+  
+
+  runUpdateForm = (item) => {
+    this.props.updateformHandler(item);
+    console.log(this.props.showUpdate);
   }
 
   render() {
@@ -46,14 +61,20 @@ class Calendar extends React.Component {
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
+            eventDisplay='block'
             themeSystem='standard'
-          /* you can update a remote database when these fire:
-          eventAdd={function(){}}
-          eventChange={function(){}}
-          eventRemove={function(){}}
-          */
+
+            ref={this.calendarRef}
+            /* you can update a remote database when these fire:
+            eventAdd={function(){}}
+            eventChange={function(){}}
+            eventRemove={function(){}}
+            */
+
           />
         </div>
+        <UpdateTask showUpdate={this.props.showUpdate} closeUpdate={this.props.closeUpdate} handleUpdate={this.props.handleUpdate} updatedObj={this.props.updatedObj} addToServer={this.props.addToServer} calendarRef={this.calendarRef}/>
+        {/* {this.props.toDoList ? this.initializeEvents() : ''} */}
       </div>
     )
   }
@@ -66,16 +87,10 @@ class Calendar extends React.Component {
           <ul>
             <li>Select dates and you will be prompted to create a new event</li>
             <li>Drag, drop, and resize events</li>
-            <li>Click an event to delete it</li>
+            <li>Click an event to see it on your Google Calendar</li>
           </ul>
         </div>
         <div className='demo-app-sidebar-section'>
-        </div>
-        <div className='demo-app-sidebar-section'>
-          <h2>All Events ({this.state.currentEvents.length})</h2>
-          <ul>
-            {this.state.currentEvents.map(renderSidebarEvent)}
-          </ul>
         </div>
       </div>
     )
@@ -88,24 +103,12 @@ class Calendar extends React.Component {
   }
 
   handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
-    let calendarApi = selectInfo.view.calendar
-
-    calendarApi.unselect() // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      })
-    }
+    this.runUpdateForm(selectInfo);
   }
 
   handleEventClick = (clickInfo) => {
     if (`Are you sure you want to delete the event '${clickInfo.event.title}'`) {
-      clickInfo.event.remove()
+      // clickInfo.event.remove()
     }
   }
 
@@ -115,12 +118,19 @@ class Calendar extends React.Component {
     })
   }
 
+  // initializeDB = () => {
+  //   this.props.toDoList ? this.props.toDoList.forEach((element) {
+  //     this.calendarRef.addEvent((element) => {
+  //       id:
+  //     }
+  // }
+
 }
 
 function renderEventContent(eventInfo) {
   return (
     <>
-      <b>{eventInfo.timeText}</b>
+      <b>{eventInfo.timeText}: </b>
       <i>{eventInfo.event.title}</i>
     </>
   )
