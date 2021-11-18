@@ -1,5 +1,4 @@
 import React from 'react';
-import Calendar from './Components/Calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -32,6 +31,8 @@ class App extends React.Component {
       calendarRef: null
     }
   }
+
+  URL = process.env.URL;
 
   handleStartDateTime = (date) => {
     this.setState({ startDateTime: date });
@@ -111,7 +112,7 @@ class App extends React.Component {
 
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
-    let url = `http://localhost:3001/events`;
+    let url = URL;
     axios.get(url)
       .then(eventObj => eventObj.data)
       .then(data => this.setState({ toDoList: data }))
@@ -121,7 +122,7 @@ class App extends React.Component {
   // getFromServer =?email=${this.state.google.email}
 
   addToServer = async (TDThing) => {
-    let newTask = await axios.post(`http://localhost:3001/events`, TDThing);
+    let newTask = await axios.post(URL, TDThing);
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
     // this.getEventsAPI();
     this.getEventsServer();
@@ -130,7 +131,7 @@ class App extends React.Component {
   }
 
   handleUpdate = async (event) => {
-    let url = `http://localhost:3001/events/${event._id}`;
+    let url = `${URL}/${event._id}`;
 
     let putObj = {
       summary: event.summary,
@@ -163,7 +164,7 @@ class App extends React.Component {
 
   deleteFromServer = async (passedId) => {
     console.log('click');
-    let deletedEvent = await axios.delete(`http://localhost:3001/events/${passedId}`);
+    let deletedEvent = await axios.delete(`${URL}/${passedId}`);
     console.log(passedId);
     let deletedEventData = deletedEvent.data
     console.log(deletedEventData);
