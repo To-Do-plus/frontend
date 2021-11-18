@@ -32,7 +32,7 @@ class App extends React.Component {
     }
   }
 
-  URL = process.env.URL;
+  URL = process.env.REACT_APP_SERVER;
 
   handleStartDateTime = (date) => {
     this.setState({ startDateTime: date });
