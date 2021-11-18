@@ -39,6 +39,7 @@ class AboutMe extends React.Component {
                   <p className="text-center">
                      Jae is a Software Developer with experience in Project Management and Accounts Management who loves learning, solving problems, and organizing teams. Jae enjoys working with Javascript in both front-end and back-end applications and hopes to use their skills to bring websites to life with people who are working to change the world for the better. In the unlikely event of having free time, Jae loves exploring New York City (and anywhere else they can get to!), writing, and performing Sketch Comedy.
                   </p>
+                  <a href=https://www.linkedin.com/in/jae-loney/></a>
                 </div>
               </div>
               <div className="col-md-2 ">
