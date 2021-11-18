@@ -20,7 +20,10 @@ class Header extends React.Component {
 
                 <NavItem>{this.props.userName ? <h2 style={{ color: 'white' }}>Welcome: {this.props.userName}</h2> : <h2 style={{ color: 'white' }}>Please Login</h2>}</NavItem>
 
-                {this.props.userName ? <NavItem> <LogoutButton onLogout={this.props.onLogout} /></NavItem> : <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>}
+                <NavItem><h2 style={{ color: 'fff' }}>a </h2> </NavItem>
+
+                {this.props.userName ? <NavItem > <LogoutButton onLogout={this.props.onLogout} /></NavItem> : <NavItem> <LoginButton resGoogle={this.props.resGoogle} /></NavItem>
+                }
 
             </Navbar>
         )
