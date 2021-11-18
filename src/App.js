@@ -27,7 +27,7 @@ class App extends React.Component {
       toDoList: [],
       showUpdate: false,
       updateForm: false,
-      updatedObj:{},
+      updatedObj: {},
       calendarRef: null
     }
   }
@@ -76,8 +76,8 @@ class App extends React.Component {
   updateCalendarRef = (ref) => {
     this.setState({
       calendarRef: ref
-   });
- }
+    });
+  }
   // getEventsAPI = async () => {
   //   // This function here is pulling things fromt he API NOT the server
   //   let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -163,8 +163,10 @@ class App extends React.Component {
   }
 
   deleteFromServer = async (passedId) => {
+
     console.log('click');
     let deletedEvent = await axios.delete(`${process.env.REACT_APP_SERVER}/events/${passedId}`);
+
     console.log(passedId);
     let deletedEventData = deletedEvent.data
     console.log(deletedEventData);
@@ -208,10 +210,10 @@ class App extends React.Component {
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
                   getEventsServer={this.getEventsServer}
-                // startDateTime={this.state.startDateTime}
-                // endDateTime={this.state.endDateTime}
-                // handleEndDateTime={this.handleEndDateTime}
-                // handleStartDateTime={this.handleStartDateTime}
+                  // startDateTime={this.state.startDateTime}
+                  // endDateTime={this.state.endDateTime}
+                  // handleEndDateTime={this.handleEndDateTime}
+                  // handleStartDateTime={this.handleStartDateTime}
                   updateformHandler={this.updateformHandler}
                   closeUpdate={this.closeUpdate}
                   updatedObj={this.state.updatedObj}
@@ -221,7 +223,7 @@ class App extends React.Component {
                   updateCalendarRef={this.updateCalendarRef}
 
                 /> : ""}
-                 {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
+              {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />
