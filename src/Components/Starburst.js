@@ -7,12 +7,14 @@ import { Doughnut } from 'react-chartjs-2';
 class Starburst extends React.Component {
 
   kitKat = () => {
+    // This one adds a Free Time Element to the array
     const array = this.props.toDoList.map((tDThing) => tDThing.summary);
     array.push('Free Time!');
     return array;
   }
 
   rolos = () => {
+    // This one figures out the amount of leftover hour time for Free Time
     const array = this.props.toDoList.map((tDThing) => tDThing.occupation);
 
     let minutos = 0;
@@ -20,15 +22,18 @@ class Starburst extends React.Component {
     for (let i = 0; i < array.length; i++) {
       minutos += array[i];
     }
-
+    console.log(minutos);
+    console.log(minutos % 60);
+    console.log(60 - (minutos % 60));
     let remainder = 60 - (minutos % 60);
 
-    array.push(remainder);
+    remainder = 60 ? '' : array.push(remainder);
     console.log(remainder);
     return array;
   }
 
   twix = () => {
+    // This one makes the amount of inner circles for hours
     const array = this.props.toDoList.map((tDThing) => tDThing.occupation);
 
     let minutos = 0;
@@ -61,7 +66,7 @@ class Starburst extends React.Component {
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
-          
+
         ],
         borderColor: [
           'rgba(75, 192, 192, 1)',
@@ -95,7 +100,7 @@ class Starburst extends React.Component {
         borderWidth: 1,
       },
     ],
-    
+
   };
 
   render() {
