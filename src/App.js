@@ -1,5 +1,4 @@
 import React from 'react';
-import Calendar from './Components/Calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -28,10 +27,12 @@ class App extends React.Component {
       toDoList: [],
       showUpdate: false,
       updateForm: false,
-      updatedObj:{},
+      updatedObj: {},
       calendarRef: null
     }
   }
+
+  // URL = process.env.REACT_APP_SERVER;
 
   handleStartDateTime = (date) => {
     this.setState({ startDateTime: date });
@@ -75,8 +76,8 @@ class App extends React.Component {
   updateCalendarRef = (ref) => {
     this.setState({
       calendarRef: ref
-   });
- }
+    });
+  }
   // getEventsAPI = async () => {
   //   // This function here is pulling things fromt he API NOT the server
   //   let URL = `https://www.googleapis.com/calendar/v3/calendars/primary/events`
@@ -111,7 +112,7 @@ class App extends React.Component {
 
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
-    let url = `http://localhost:3001/events`;
+    let url = `${process.env.REACT_APP_SERVER}/events`;
     axios.get(url)
       .then(eventObj => eventObj.data)
       .then(data => this.setState({ toDoList: data }))
@@ -121,7 +122,7 @@ class App extends React.Component {
   // getFromServer =?email=${this.state.google.email}
 
   addToServer = async (TDThing) => {
-    let newTask = await axios.post(`http://localhost:3001/events`, TDThing);
+    let newTask = await axios.post(`${process.env.REACT_APP_SERVER}/events`, TDThing);
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
     // this.getEventsAPI();
     this.getEventsServer();
@@ -130,7 +131,7 @@ class App extends React.Component {
   }
 
   handleUpdate = async (event) => {
-    let url = `http://localhost:3001/events/${event._id}`;
+    let url = `${process.env.REACT_APP_SERVER}/events/${event._id}`;
 
     let putObj = {
       summary: event.summary,
@@ -162,8 +163,10 @@ class App extends React.Component {
   }
 
   deleteFromServer = async (passedId) => {
+
     console.log('click');
-    let deletedEvent = await axios.delete(`http://localhost:3001/events/${passedId}`);
+    let deletedEvent = await axios.delete(`${process.env.REACT_APP_SERVER}/events/${passedId}`);
+
     console.log(passedId);
     let deletedEventData = deletedEvent.data
     console.log(deletedEventData);
@@ -207,10 +210,10 @@ class App extends React.Component {
                   toDoList={this.state.toDoList}
                   timeZone={this.state.timeZone}
                   getEventsServer={this.getEventsServer}
-                // startDateTime={this.state.startDateTime}
-                // endDateTime={this.state.endDateTime}
-                // handleEndDateTime={this.handleEndDateTime}
-                // handleStartDateTime={this.handleStartDateTime}
+                  // startDateTime={this.state.startDateTime}
+                  // endDateTime={this.state.endDateTime}
+                  // handleEndDateTime={this.handleEndDateTime}
+                  // handleStartDateTime={this.handleStartDateTime}
                   updateformHandler={this.updateformHandler}
                   closeUpdate={this.closeUpdate}
                   updatedObj={this.state.updatedObj}
@@ -220,7 +223,7 @@ class App extends React.Component {
                   updateCalendarRef={this.updateCalendarRef}
 
                 /> : ""}
-                 {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
+              {this.state.google.name ? "" : <Image fluid src={ToDoPlus} />}
             </Route>
             <Route exact path="/aboutme">
               <AboutMe />
