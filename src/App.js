@@ -1,5 +1,4 @@
 import React from 'react';
-import Calendar from './Components/Calendar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
