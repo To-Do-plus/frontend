@@ -27,7 +27,7 @@ class Starburst extends React.Component {
     // console.log(60 - (minutos % 60));
     let remainder = 60 - (minutos % 60);
 
-    remainder = array.push(remainder);
+    let array = array.push(remainder);
     // console.log(remainder);
     return array;
   }
