@@ -32,7 +32,7 @@ class App extends React.Component {
     }
   }
 
-  URL = process.env.REACT_APP_SERVER;
+  // URL = process.env.REACT_APP_SERVER;
 
   handleStartDateTime = (date) => {
     this.setState({ startDateTime: date });
@@ -112,7 +112,7 @@ class App extends React.Component {
 
   getEventsServer = async () => {
     //THIS NEEDS TO BE UPDATED BEFORE DEPLOYING!!!!!
-    let url = URL;
+    let url = `${process.env.REACT_APP_SERVER}/events`;
     axios.get(url)
       .then(eventObj => eventObj.data)
       .then(data => this.setState({ toDoList: data }))
@@ -122,7 +122,7 @@ class App extends React.Component {
   // getFromServer =?email=${this.state.google.email}
 
   addToServer = async (TDThing) => {
-    let newTask = await axios.post(URL, TDThing);
+    let newTask = await axios.post(`${process.env.REACT_APP_SERVER}/events`, TDThing);
     this.setState({ toDoList: [...this.state.toDoList, newTask.data] })
     // this.getEventsAPI();
     this.getEventsServer();
@@ -131,7 +131,7 @@ class App extends React.Component {
   }
 
   handleUpdate = async (event) => {
-    let url = `${URL}/${event._id}`;
+    let url = `${process.env.REACT_APP_SERVER}/events/${event._id}`;
 
     let putObj = {
       summary: event.summary,
@@ -164,7 +164,7 @@ class App extends React.Component {
 
   deleteFromServer = async (passedId) => {
     console.log('click');
-    let deletedEvent = await axios.delete(`${URL}/${passedId}`);
+    let deletedEvent = await axios.delete(`${process.env.REACT_APP_SERVER}/events/${passedId}`);
     console.log(passedId);
     let deletedEventData = deletedEvent.data
     console.log(deletedEventData);
